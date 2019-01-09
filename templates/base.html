@@ -1,0 +1,30 @@
+<!DOCTYPE html><!--Basic template for all other pages -->
+<html>
+<head><!--Replaceable title/heading -->
+    {% block head %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title> {% block title %} Title {% endblock %}  </title>
+    {% endblock %}
+
+</head>
+<body><!--Replaceable body -->
+    {% block login %}
+    {% endblock %}
+
+    {% block alert %}
+    {% endblock %}
+    {% block content %}
+    content
+    {% endblock %}
+
+    {% block footer %}<!--Copyright stuff -->
+    <br>
+    <br>
+    <br>
+	<div class="center"> &copy; Copyright charred_cheetos </div>
+	  {% endblock %}
+
+</body>
+</html>
