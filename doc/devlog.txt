@@ -27,3 +27,9 @@ Updated design doc to have a short description of our project.
 Updated the component map to clearly show db file.
 Updated design docs to say why we are using Bootstrap.
 ==============================================================
+
+liaoJ -- 2019-01-09 11:00
+--------------------------------------------------------------
+Added all placeholder files
+Still needs to link game.js to style.css
+==============================================================
