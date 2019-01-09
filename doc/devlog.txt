@@ -25,4 +25,5 @@ liJ -- 2019-01-08 14:05
 --------------------------------------------------------------
 Updated design doc to have a short description of our project.
 Updated the component map to clearly show db file.
+Updated design docs to say why we are using Bootstrap.
 ==============================================================
