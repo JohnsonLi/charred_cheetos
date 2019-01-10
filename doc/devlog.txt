@@ -60,3 +60,12 @@ started working on word search generator
 created generate function to create empty board
 created insert function to insert one word into board
 ==============================================================
+
+joyceL -- 2019-01-10 14:40
+--------------------------------------------------------------
+created db function to update leaderboard
+change in db schema
+    removed puzzle table
+    leaderboard table now have 4 columns: username, category, level, time
+**need to update design doc
+==============================================================
