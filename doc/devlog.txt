@@ -42,5 +42,14 @@ Worked on word.py to get data from api
 joyceL -- 2019-01-09 14:04
 --------------------------------------------------------------
 set up login and register routes
-create db
+created db
+added function to add new user to db
+added authenticate function to let user login
+added logout route
+==============================================================
+
+joyceL -- 2019-01-09 21:48
+--------------------------------------------------------------
+fixed naming format in devlog (from lastF to firstL)
+added requirements.txt
 ==============================================================
