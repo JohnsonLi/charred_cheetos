@@ -69,3 +69,8 @@ change in db schema
     leaderboard table now have 4 columns: username, category, level, time
 **need to update design doc
 ==============================================================
+
+johnsonL-- 2019-01-10 18:54
+--------------------------------------------------------------
+updated design doc
+==============================================================
