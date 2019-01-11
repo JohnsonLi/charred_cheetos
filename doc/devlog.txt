@@ -79,3 +79,10 @@ joyceL-- 2019-01-11 14:01
 --------------------------------------------------------------
 created db function to generate a sorted list of times for a level
 ==============================================================
+
+johnsonL, kennyL -- 2019-01-11 14:57
+--------------------------------------------------------------
+continued working on word search algorithm
+worked on placing word function
+**bug with placing words (might be off by one error)
+==============================================================
