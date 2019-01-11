@@ -39,7 +39,7 @@ def insert_word(word_search, word):
         if is_outside(row_ind, col_ind, size):
             return False;
 
-        if word[i] != word_search[r][c] and word_search[r][c] != '_':
+        if word[i] != word_search[row_ind][col_ind] and word_search[row_ind][col_ind] != '_':
             return False
 
     for char in word:
@@ -60,5 +60,5 @@ def to_string(ws):
     return string
 
 # print(word_bank)
-to_string(generate(ws, word_bank))
-print(ws)
+print(to_string(generate(ws, word_bank)))
+# print(ws)

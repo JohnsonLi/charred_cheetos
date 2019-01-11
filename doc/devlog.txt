@@ -84,5 +84,5 @@ johnsonL, kennyL -- 2019-01-11 14:57
 --------------------------------------------------------------
 continued working on word search algorithm
 worked on placing word function
-**bug with placing words (might be off by one error)
+fixed bug with placing words
 ==============================================================
