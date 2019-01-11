@@ -1,37 +1,64 @@
 import random
 
 word_bank = ['cat','bobcat','rhinoceros','communism','dog']
-word_bank.sort(key=len)
+word_bank.sort(key=len, reverse=True)
 
 size = 10
-max_tries = 10
+max_tries = len(word_bank) * 100
 
 ws = [['_' for i in range(size)] for i in range(size)]
 offset = [0, 1, -1]
 
 def generate(word_search, word_bank):
     for word in word_bank:
-        r = random.randint(0,9)
-        c = random.randint(0,9)
-        while(word[0] != word_search[r][c] and word_search[r][c] != '_'):
-            r = random.randint(0,9)
-            c = random.randint(0,9)
-        insert_word(ws, word, r, c)
+        for tries in range(max_tries):
+            if insert_word(ws, word):
+                break
+
     return word_search
 
-def insert_word(word_search, word, r, c):
+def is_outside(r, c, size):
+    return r < 0 or r >= size or c < 0 or c >= size
+
+def insert_word(word_search, word):
     offset_r = random.choice(offset)
     offset_c = random.choice(offset)
 
-    for i in range(max_tries):
-        try:
-            for char in word:
-                word_search[r][c] = char;
-                r += offset_r
-                c += offset_c
-        except:
-            continue
+    r = random.randint(0,9)
+    c = random.randint(0,9)
+
+    if(offset_r == 0 or offset_c == 0):
+        return False
+
+    for i in range(len(word)):
+        row_ind = r + offset_r * i
+        col_ind = c + offset_c * i
+
+        print(str(row_ind) + " " + str(col_ind))
+
+        if is_outside(row_ind, col_ind, size):
+            return False;
+
+        if word[i] != word_search[r][c] and word_search[r][c] != '_':
+            return False
+
+    for char in word:
+        # print(str(r) + " " + str(c))
+        word_search[r][c] = char;
+        r += offset_r
+        c += offset_c
+
+    return True
+
+def to_string(ws):
+    string  = ""
+    for row in ws:
+        for thing in row:
+            string += thing + " "
+        string += "\n"
+
+    return string
 
 # print(word_bank)
-generate(ws, word_bank)
+to_string(generate(ws, word_bank))
 print(ws)
