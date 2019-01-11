@@ -77,6 +77,37 @@ def update_lb(user, category, level, time):
     db.commit()
     db.close()
 
+def load_lb(category, level):
+    """Load leaderboard for a level in a category."""
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    command = "SELECT username, time FROM leaderboard WHERE category = {} and level = {}".format(category, level)
+    c.execute(command)
+    result = c.fetchall()
+    db.close()
+
+    # No score records
+    if (result == []):
+        return result
+    else:
+        # a list of [score, username]
+        return sort_time(result)
+
+def sort_time(data):
+    """Sort time from fastest to slowest for leaderboard display and return up to 10 best times."""
+    print(data)
+
+    lb = list()
+    for score in data:
+        # print(score)
+        temp = list()
+        temp.append(score[1])
+        temp.append(score[0])
+        lb.append(temp)
+
+    lb.sort()
+    return lb[:10]
 
 # createTable()
 def test():
@@ -90,6 +121,12 @@ def test():
     # update_lb("b", 1, 2, 30)
     # update_lb("a", 1, 2, 45)
     # update_lb("a", 1, 1, 25)
+    # update_lb("c", 1, 1, 100)
+    # update_lb("d", 1, 1, 20)
+    # update_lb("3", 1, 1, 43)
+    #
+    # print(load_lb(1,1))
+    # print(load_lb(1,2))
 
     db.close()
 
