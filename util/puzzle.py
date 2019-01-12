@@ -10,18 +10,22 @@ max_tries = len(word_bank) * 100
 ws = [['_' for i in range(size)] for i in range(size)]
 offset = [0, 1, -1]
 
-def generate(word_search, word_bank):
+def generate(word_bank):
     for word in word_bank:
         for tries in range(max_tries):
-            if insert_word(ws, word):
+            if insert_word(word):
                 break
 
-    return word_search
+    result = {}
+    result['puzzle'] = ws
+    result['words'] = added_words
+
+    return result
 
 def is_outside(r, c, size):
     return r < 0 or r >= size or c < 0 or c >= size
 
-def insert_word(word_search, word):
+def insert_word(word):
     offset_r = random.choice(offset)
     offset_c = random.choice(offset)
 
@@ -35,17 +39,17 @@ def insert_word(word_search, word):
         row_ind = r + offset_r * i
         col_ind = c + offset_c * i
 
-        print(str(row_ind) + " " + str(col_ind))
+        # print(str(row_ind) + " " + str(col_ind))
 
         if is_outside(row_ind, col_ind, size):
             return False;
 
-        if word[i] != word_search[row_ind][col_ind] and word_search[row_ind][col_ind] != '_':
+        if word[i] != ws[row_ind][col_ind] and ws[row_ind][col_ind] != '_':
             return False
 
     for char in word:
         # print(str(r) + " " + str(c))
-        word_search[r][c] = char;
+        ws[r][c] = char;
         r += offset_r
         c += offset_c
 
@@ -61,7 +65,7 @@ def to_string(ws):
 
     return string
 
-# print(word_bank)
-print(to_string(generate(ws, word_bank)))
-print(added_words)
-# print(ws)
+# generated = generate(word_bank)
+# print(to_string(generated['puzzle']))
+# print(generated['words'])
+
