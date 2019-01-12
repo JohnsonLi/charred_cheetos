@@ -1,9 +1,10 @@
 import random
 
 word_bank = ['cat','bobcat','rhinoceros','communism','dog']
+added_words = []
 word_bank.sort(key=len, reverse=True)
 
-size = 10
+size = 12
 max_tries = len(word_bank) * 100
 
 ws = [['_' for i in range(size)] for i in range(size)]
@@ -27,7 +28,7 @@ def insert_word(word_search, word):
     r = random.randint(0,9)
     c = random.randint(0,9)
 
-    if(offset_r == 0 or offset_c == 0):
+    if(offset_r == 0 and offset_c == 0):
         return False
 
     for i in range(len(word)):
@@ -48,6 +49,7 @@ def insert_word(word_search, word):
         r += offset_r
         c += offset_c
 
+    added_words.append(word)
     return True
 
 def to_string(ws):
@@ -61,4 +63,5 @@ def to_string(ws):
 
 # print(word_bank)
 print(to_string(generate(ws, word_bank)))
+print(added_words)
 # print(ws)
