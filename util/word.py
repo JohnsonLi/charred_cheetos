@@ -7,7 +7,7 @@ def randomWords(list, num):
     i = 0
     while ( i < num ):
         r = random.randint(0, len(list))
-        i++
+        i+= 1
         newList.append(list[i])
     return newList
 
