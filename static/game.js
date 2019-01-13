@@ -17,9 +17,11 @@ let directionChosen = false;
 let currentDirection;
 let lockedDirection = null;
 
+// ============== event listeners for interacting with puzzle ==============
 letters.forEach(item => {
 
     item.addEventListener('mousedown', e => {
+        // console.log("down")
         if (anchor == null) { // first letter selected
             if (selected.indexOf(item) == -1) {
                 selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
@@ -45,12 +47,6 @@ letters.forEach(item => {
 
 });
 
-body.addEventListener('mouseup', () => {
-    check();
-    clearselected();
-    anchor = null;
-    lockedDirection = null;
-});
 
 body.addEventListener('mousemove', e => {
     // console.log(e)
@@ -63,64 +59,14 @@ body.addEventListener('mousemove', e => {
     // console.log(getDirection(normalizeAngle(angle, currentX, currentY, clientY)));
 });
 
-let clearselected = () => {
-    selected.forEach(item => {
-        if (correct.indexOf(item) == -1) {
-            item.style.color = 'black';
-        } else { // word already found
-            item.style.color = 'teal';
-        }
-    });
-    directionChosen = false;
-    selectedLetters.innerHTML = '';
-    selected = [];
-    startX = 0;
-    startY = 0;
-};
+body.addEventListener('mouseup', () => {
+    check();
+    // clearselected();
+    anchor = null;
+    lockedDirection = null;
+});
 
-let normalizeAngle = (angle, currentX, currentY, clientY) => {
-    // The angle is weird because the top left of the browser is (0,0)
-
-    // Special angles
-    if (angle == 90) {
-        return 0;
-    }
-    if (angle == -90) {
-        return 180;
-    }
-    if (angle == 0 && clientY < startY) {
-        return 90;
-    }
-    if (angle == 0 && clientY > startY) {
-        return 270;
-    }
-
-    // Quadrants
-    // Q1
-    if (currentX > 0 && currentY < 0) {
-        return -1 * angle + 90;
-    }
-    // Q2
-    if (currentX < 0 && currentY < 0) {
-        return -1 * angle + 90;
-    }
-    // Q3
-    if (currentX < 0 && currentY > 0) {
-        return angle + 270;
-    }
-    // Q4
-    if (currentX > 0 && currentY > 0) {
-        return angle + 270;
-    }
-};
-
-// get direction based on the angle.
-// each direction gets like 60 degrees.
-let getDirection = angle => {
-    var val = Math.floor((angle / 45) + 0.5);
-    return directionList[(val % 8)];
-};
-
+// ============== selecting words in game ==============
 let change_color = (e, direc) => {
     // prevent selection overlap
     if (lockedDirection == null) {
@@ -132,20 +78,6 @@ let change_color = (e, direc) => {
         selectedLetters.innerHTML = selectedLetters.innerHTML + e.target.innerHTML;
         selected.push(e.target);
         anchor = e.target
-    }
-};
-
-let check = () => {
-    // console.log(selected);
-    // console.log(words.indexOf(selectedLetters.innerHTML) != -1);
-    if (words.indexOf(selectedLetters.innerHTML) != -1) {
-        selected.forEach(item => {
-            item.style.color = 'teal';
-            correct.push(item);
-        });
-        words = words.filter(word => {
-            word != selectedLetters.innerHTML;
-        });
     }
 };
 
@@ -226,4 +158,76 @@ let drawPath = (e) => {
             }
         }
     }
+};
+
+// ============== check for correct selections ==============
+let check = () => {
+    // console.log(selected);
+    // console.log(words.indexOf(selectedLetters.innerHTML) != -1);
+    index = words.indexOf(selectedLetters.innerHTML);
+    if (index != -1) {
+        selected.forEach(item => {
+            item.style.color = 'teal';
+        });
+        correct.push(words[index]);
+        words.splice(index, 1);
+    }
+
+    else {
+        selected.forEach(item => {
+            item.style.color = 'black';
+        });
+    }
+    // console.log(correct);
+    // console.log(words);
+
+    directionChosen = false;
+    selectedLetters.innerHTML = '';
+    selected = [];
+    startX = 0;
+    startY = 0;
+};
+
+// ============== helper functions to determine direction ==============
+let normalizeAngle = (angle, currentX, currentY, clientY) => {
+    // The angle is weird because the top left of the browser is (0,0)
+
+    // Special angles
+    if (angle == 90) {
+        return 0;
+    }
+    if (angle == -90) {
+        return 180;
+    }
+    if (angle == 0 && clientY < startY) {
+        return 90;
+    }
+    if (angle == 0 && clientY > startY) {
+        return 270;
+    }
+
+    // Quadrants
+    // Q1
+    if (currentX > 0 && currentY < 0) {
+        return -1 * angle + 90;
+    }
+    // Q2
+    if (currentX < 0 && currentY < 0) {
+        return -1 * angle + 90;
+    }
+    // Q3
+    if (currentX < 0 && currentY > 0) {
+        return angle + 270;
+    }
+    // Q4
+    if (currentX > 0 && currentY > 0) {
+        return angle + 270;
+    }
+};
+
+// get direction based on the angle.
+// each direction gets like 60 degrees.
+let getDirection = angle => {
+    var val = Math.floor((angle / 45) + 0.5);
+    return directionList[(val % 8)];
 };
