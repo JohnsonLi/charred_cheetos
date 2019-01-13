@@ -95,3 +95,9 @@ created display for word search in game.html
 **bug with moving cursor out of board (highlighted word doesn't disappear)
 **bug with checking for correct word in a list
 ==============================================================
+
+joyceL-- 2019-01-13 12:10
+--------------------------------------------------------------
+fixed: lifting cursor out of board will cancel selection
+fixed: can check for more than one correct word
+==============================================================
