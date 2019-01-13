@@ -71,9 +71,12 @@ def random():
 #---------- Levels ----------
 @app.route("/game")
 def game():
+    size = 12
+    ws = [['_' for i in range(size)] for i in range(size)]
     mode = request.args["mode"]
-    game = puzzle.create_puzzle(mode)
-    # print(game["words"])
+    game = puzzle.create_puzzle(mode, ws)
+    print(game["words"])
+    print(str(len(game['words'])) + " words added")
     return render_template("game.html", board = game["puzzle"], wb = game["words"])
 
 if __name__ == "__main__":
