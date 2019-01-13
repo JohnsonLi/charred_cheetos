@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito|Righteous');
+
+* {
+  font-family: 'Righteous';
+}
+
+table {
+  padding: 0px;
+
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  margin: auto;
+  border: 1px solid black;
+}
+
+td {
+  height: 70px;
+  width: 70px;
+
+  padding: 0px;
+
+  empty-cells: show;
+  text-align: center;
+  vertical-align: baseline;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#selected {
+  text-align: center;
+}
