@@ -6,7 +6,7 @@ const selectedLetters = document.getElementById('selected');
 let anchor = null;
 let selected = [];
 let correct = [];
-let words = ['cat', 'bobcat', 'rhinoceros', 'communism', 'dog'];
+// let words = ['cat', 'bobcat', 'rhinoceros', 'communism', 'dog'];
 
 let direction;
 let startX;
@@ -16,6 +16,9 @@ let directionList = ["right", "uprightdiag", "up", "upleftdiag", "left", "downle
 let directionChosen = false;
 let currentDirection;
 let lockedDirection = null;
+
+// init for flask
+console.log(words)
 
 // ============== event listeners for interacting with puzzle ==============
 letters.forEach(item => {
@@ -66,10 +69,10 @@ body.addEventListener('mousemove', e => {
 });
 
 body.addEventListener('mouseup', () => {
-    check();
-    // clearselected();
     anchor = null;
     lockedDirection = null;
+    check();
+    // clearselected();
 });
 
 // ============== selecting words in game ==============

@@ -1,4 +1,4 @@
-import os
+import os, json
 
 from flask import Flask, request, render_template, \
      flash, session, url_for, redirect
@@ -75,8 +75,9 @@ def game():
     ws = [['_' for i in range(size)] for i in range(size)]
     mode = request.args["mode"]
     game = puzzle.create_puzzle(mode, ws)
-    print(game["words"])
-    print(str(len(game['words'])) + " words added")
+    # print(game["words"])
+    # print(str(len(game['words'])) + " words added")
+
     return render_template("game.html", board = game["puzzle"], wb = game["words"])
 
 if __name__ == "__main__":

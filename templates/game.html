@@ -25,12 +25,12 @@
   </table>
 </div>
 
-<h3> Word Bank </h3>
-    <p>
-        {% for word in wb %}
-        {{word}} |
-        {% endfor %}
-    </p>
+<h3>Word Bank</h3>
+<p>{% for word in wb %} {{ word }} | {% endfor %}</p>
 
+<script>
+  let words = {{wb|safe}};
+</script>
 <script src="../static/game.js"></script>
+
 {% endblock %}
