@@ -24,7 +24,13 @@ letters.forEach(item => {
         // console.log("down")
         if (anchor == null) { // first letter selected
             if (selected.indexOf(item) == -1) {
-                selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
+                if(selectedLetters.innerHTML == '__________________'){
+                    selectedLetters.innerHTML = ''
+                    selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
+                } else {
+                    selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
+
+                }
                 selected.push(item);
             }
             item.style.color = 'blue';
@@ -130,21 +136,26 @@ let check = () => {
     if (index != -1) {
         selected.forEach(item => {
             item.style.color = 'teal';
+            correct.push(item);
         });
-        correct.push(words[index]);
+        
         words.splice(index, 1);
     }
 
     else {
         selected.forEach(item => {
-            item.style.color = 'black';
+            if(correct.indexOf(item) == -1){
+                item.style.color = 'black';
+            } else {
+                item.style.color = 'teal';
+            }
         });
     }
     // console.log(correct);
     // console.log(words);
 
     directionChosen = false;
-    selectedLetters.innerHTML = '';
+    selectedLetters.innerHTML = '__________________';
     selected = [];
     startX = 0;
     startY = 0;
