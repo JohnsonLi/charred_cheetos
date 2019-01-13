@@ -6,29 +6,29 @@ from util import wordApi
 # word_bank.sort(key=len, reverse=True)
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 size = 12
-num_words = 20
+num_words = 12
 
-ws = [['_' for i in range(size)] for i in range(size)]
+# ws = [['_' for i in range(size)] for i in range(size)]
 offset = [0, 1, -1]
 
-def create_puzzle(mode):
+def create_puzzle(mode, ws):
     if (mode == "random"):
         word_bank = wordApi.random_list(num_words)
         print(word_bank)
     word_bank.sort(key=len, reverse=True)
     max_tries = len(word_bank) * 100
-    return generate(word_bank, max_tries)
+    return generate(word_bank, max_tries, ws)
 
-def generate(word_bank, trials):
+def generate(word_bank, trials, ws):
     wb = []
     for word in word_bank:
         # print("trying: " + word)
         for tries in range(trials): # keep inserting until max tries exceeded
-            if insert_word(word): # go on to next word if current word is inserted
+            if insert_word(word, ws): # go on to next word if current word is inserted
                 # print("added: " + word)
                 wb.append(word)
                 break
-    fillRandom()
+    # fillRandom()
     result = {}
     result['puzzle'] = ws
     result['words'] = wb
@@ -38,7 +38,7 @@ def generate(word_bank, trials):
 def is_outside(r, c, size):
     return r < 0 or r >= size or c < 0 or c >= size
 
-def insert_word(word):
+def insert_word(word, ws):
     # select a direction
     offset_r = random.choice(offset)
     offset_c = random.choice(offset)
@@ -84,6 +84,7 @@ def fillRandom():
             if ws[r][c] == "_":
                 ws[r][c] = random.choice(alphabet)
 
-# generated = generate(word_bank)
+# generated = create_puzzle("random")
 # print(to_string(generated['puzzle']))
 # print(generated['words'])
+# print(str(len(generated['words'])) + " words added")
