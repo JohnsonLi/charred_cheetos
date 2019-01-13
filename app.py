@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, render_template, \
      flash, session, url_for, redirect
 
-from util import db, puzzle, wordApi
+from util import db, puzzle
 
 
 app = Flask(__name__)
@@ -60,6 +60,9 @@ def logout():
         return redirect(url_for("login"))
 
 #---------- Random ----------
+@app.route("/random")
+def random():
+    return redirect(url_for("game", mode="random"))
 
 #---------- Custom ----------
 
@@ -68,10 +71,10 @@ def logout():
 #---------- Levels ----------
 @app.route("/game")
 def game():
-    word_bank = ['cat','bobcat','rhinoceros','communism','dog']
-    game = puzzle.generate(word_bank)
-    return render_template("game.html", board = game['puzzle'])
-
+    mode = request.args["mode"]
+    game = puzzle.create_puzzle(mode)
+    # print(game["words"])
+    return render_template("game.html", board = game["puzzle"], wb = game["words"])
 
 if __name__ == "__main__":
     app.debug = True

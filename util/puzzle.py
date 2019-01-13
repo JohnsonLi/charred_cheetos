@@ -1,24 +1,37 @@
 import random
 
-word_bank = ['cat','bobcat','rhinoceros','communism','dog']
-added_words = []
-word_bank.sort(key=len, reverse=True)
+from util import wordApi
+
+# word_bank = ['cat','bobcat','rhinoceros','communism','dog']
+# word_bank.sort(key=len, reverse=True)
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 size = 12
-max_tries = len(word_bank) * 100
+num_words = 20
 
 ws = [['_' for i in range(size)] for i in range(size)]
 offset = [0, 1, -1]
 
-def generate(word_bank):
+def create_puzzle(mode):
+    if (mode == "random"):
+        word_bank = wordApi.random_list(num_words)
+        print(word_bank)
+    word_bank.sort(key=len, reverse=True)
+    max_tries = len(word_bank) * 100
+    return generate(word_bank, max_tries)
+
+def generate(word_bank, trials):
+    wb = []
     for word in word_bank:
-        for tries in range(max_tries): # keep inserting until max tries exceeded
+        # print("trying: " + word)
+        for tries in range(trials): # keep inserting until max tries exceeded
             if insert_word(word): # go on to next word if current word is inserted
+                # print("added: " + word)
+                wb.append(word)
                 break
     fillRandom()
     result = {}
     result['puzzle'] = ws
-    result['words'] = added_words
+    result['words'] = wb
 
     return result
 
@@ -54,7 +67,6 @@ def insert_word(word):
         r += offset_r
         c += offset_c
 
-    added_words.append(word)
     return True
 
 def to_string(ws):
@@ -72,6 +84,6 @@ def fillRandom():
             if ws[r][c] == "_":
                 ws[r][c] = random.choice(alphabet)
 
-generated = generate(word_bank)
+# generated = generate(word_bank)
 # print(to_string(generated['puzzle']))
 # print(generated['words'])
