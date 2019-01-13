@@ -20,7 +20,7 @@ let lockedDirection = null;
 letters.forEach(item => {
 
     item.addEventListener('mousedown', e => {
-        if (anchor == null) {
+        if (anchor == null) { // first letter selected
             if (selected.indexOf(item) == -1) {
                 selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
                 selected.push(item);
@@ -29,12 +29,8 @@ letters.forEach(item => {
             anchor = item;
         }
         startX = e.clientX;
-        startY = e.clientY;   
+        startY = e.clientY;
     });
-
-    // item.addEventListener('mouseup', () => {
-    //     anchor = null;
-    // });
 
     item.addEventListener('mouseover', (e) => {
 
@@ -49,7 +45,7 @@ letters.forEach(item => {
 
 });
 
-puzzle.addEventListener('mouseup', () => {
+body.addEventListener('mouseup', () => {
     check();
     clearselected();
     anchor = null;
@@ -62,16 +58,16 @@ body.addEventListener('mousemove', e => {
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
     hyp = Math.sqrt(currentX * currentX + currentY * currentY);
-    angle = Math.asin(currentX / hyp) * (180 / Math.PI);
+    angle = Math.asin(currentX / hyp) * (180 / Math.PI); // angle from starting position to current
     direction = getDirection(normalizeAngle(angle, currentX, currentY, clientY));
-    console.log(getDirection(normalizeAngle(angle, currentX, currentY, clientY)));
+    // console.log(getDirection(normalizeAngle(angle, currentX, currentY, clientY)));
 });
 
 let clearselected = () => {
     selected.forEach(item => {
         if (correct.indexOf(item) == -1) {
             item.style.color = 'black';
-        } else {
+        } else { // word already found
             item.style.color = 'teal';
         }
     });
@@ -99,6 +95,7 @@ let normalizeAngle = (angle, currentX, currentY, clientY) => {
         return 270;
     }
 
+    // Quadrants
     // Q1
     if (currentX > 0 && currentY < 0) {
         return -1 * angle + 90;
@@ -169,7 +166,7 @@ let drawPath = (e) => {
 
         if (currentDirection == 'up' && anchorRow - 1 == currRow && anchorCol == currCol) {
             change_color(e, directionList[2])
-        }        
+        }
 
         if (currentDirection == 'upleftdiag' && anchorRow - 1 == currRow && anchorCol -1 == currCol) {
             change_color(e, directionList[3])
@@ -182,7 +179,7 @@ let drawPath = (e) => {
         if (currentDirection == 'downleftdiag' && anchorRow + 1 == currRow && anchorCol - 1 == currCol) {
             change_color(e, directionList[5])
         }
- 
+
         if (currentDirection == 'down' && anchorRow + 1 == currRow && anchorCol == currCol) {
             change_color(e, directionList[6])
         }
@@ -190,40 +187,40 @@ let drawPath = (e) => {
         if (currentDirection == 'downrightdiag' && anchorRow + 1 == currRow && anchorCol + 1 == currCol) {
             change_color(e, directionList[7])
         }
-    } else {         
+    } else {
         if (currentDirection == lockedDirection) {
             currRow = e.target.parentNode.rowIndex
             currCol = e.target.cellIndex
             anchorRow = anchor.parentNode.rowIndex
-            anchorCol = anchor.cellIndex                       
+            anchorCol = anchor.cellIndex
             if (currentDirection == 'right' && anchorRow == currRow && anchorCol + 1 == currCol) {
                 change_color(e, directionList[0])
             }
-    
+
             if (currentDirection == 'uprightdiag' && anchorRow - 1 == currRow && anchorCol + 1 == currCol) {
                 change_color(e, directionList[1])
             }
-    
+
             if (currentDirection == 'up' && anchorRow - 1 == currRow && anchorCol == currCol) {
                 change_color(e, directionList[2])
-            }        
-    
+            }
+
             if (currentDirection == 'upleftdiag' && anchorRow - 1 == currRow && anchorCol -1 == currCol) {
                 change_color(e, directionList[3])
             }
-    
+
             if (currentDirection == 'left' && anchorRow == currRow && anchorCol - 1 == currCol) {
                 change_color(e, directionList[4])
             }
-    
+
             if (currentDirection == 'downleftdiag' && anchorRow + 1 == currRow && anchorCol - 1 == currCol) {
                 change_color(e, directionList[5])
             }
-     
+
             if (currentDirection == 'down' && anchorRow + 1 == currRow && anchorCol == currCol) {
                 change_color(e, directionList[6])
             }
-    
+
             if (currentDirection == 'downrightdiag' && anchorRow + 1 == currRow && anchorCol + 1 == currCol) {
                 change_color(e, directionList[7])
             }
