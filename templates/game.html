@@ -1,29 +1,29 @@
-{% extends "base.html" %}
-
-{% block title %} Alphabet Goop {% endblock %}
+{% extends "base.html" %} {% block title %} Alphabet Goop {% endblock %}
 <!-- game board -->
 
 <!-- display leaderboard if applicable -->
 <style>
-    td {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+  td {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 </style>
 {% block content %}
-<div id="selected"></div>
-<table id="puzzle" border="1">
+<div>
+  <div id="selected">__________________</div>
+  <br />
+  <table id="puzzle" border="1">
     <tbody>
-        {% for row in board %}
-        <tr>
-            {% for letter in row %}
-            <td class="letter">{{letter}}</td>
-            {% endfor %}
-        </tr>
+      {% for row in board %}
+      <tr>
+        {% for letter in row %}
+        <td class="letter">{{ letter }}</td>
         {% endfor %}
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
-
+  </table>
+</div>
 
 <script src="../static/game.js"></script>
 {% endblock %}
