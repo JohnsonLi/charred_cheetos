@@ -4,6 +4,10 @@
   font-family: 'Righteous';
 }
 
+.center {
+    text-align: center;
+}
+
 table {
   padding: 0px;
 

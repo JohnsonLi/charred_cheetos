@@ -11,6 +11,7 @@
     }
 </style>
 {% block content %}
+<div id="selected"></div>
 <table id="puzzle" border="1">
     <tbody>
         {% for row in board %}
@@ -23,7 +24,6 @@
     </tbody>
 </table>
 
-<div id="selected"></div>
 
 <script src="../static/game.js"></script>
 {% endblock %}

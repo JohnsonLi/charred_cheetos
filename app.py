@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, render_template, \
      flash, session, url_for, redirect
 
-from util import db, puzzle, word
+from util import db, puzzle, wordApi
 
 
 app = Flask(__name__)
@@ -69,7 +69,8 @@ def logout():
 @app.route("/game")
 def game():
     word_bank = ['cat','bobcat','rhinoceros','communism','dog']
-    return render_template("game.html", board = puzzle.generate(word_bank))
+    game = puzzle.generate(word_bank)
+    return render_template("game.html", board = game['puzzle'])
 
 
 if __name__ == "__main__":
