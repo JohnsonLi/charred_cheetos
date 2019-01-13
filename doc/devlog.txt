@@ -109,3 +109,8 @@ linked wordApi.py and puzzle.py: a puzzle can be generated for "random" mode
 **bug: sometimes only a small number of words get put into puzzle
 **have not updated js file
 ==============================================================
+
+johnsonL-- 2019-01-13 14:12
+--------------------------------------------------------------
+Reloading random puzzle will create a new puzzle
+==============================================================
