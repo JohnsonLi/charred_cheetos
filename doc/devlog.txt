@@ -86,3 +86,10 @@ continued working on word search algorithm
 worked on placing word function
 fixed bug with placing words
 ==============================================================
+
+johnsonL, kennyL -- 2019-01-13 1:20
+--------------------------------------------------------------
+created javascript of board and implemented highlighting the words
+added function to fill out rest of board with random letters
+**bug with moving cursor out of board (highlighted word doesn't disappear)
+==============================================================
