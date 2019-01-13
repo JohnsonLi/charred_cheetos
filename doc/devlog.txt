@@ -96,8 +96,11 @@ created display for word search in game.html
 **bug with checking for correct word in a list
 ==============================================================
 
-joyceL-- 2019-01-13 12:10
+joyceL-- 2019-01-13 13:38
 --------------------------------------------------------------
 fixed: lifting cursor out of board will cancel selection
 fixed: can check for more than one correct word
+linked wordApi.py and puzzle.py: a puzzle can be generated for "random" mode
+**bug: sometimes only a small number of words get put into puzzle
+**have not updated js file
 ==============================================================

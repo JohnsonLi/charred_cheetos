@@ -4,15 +4,29 @@ ctxt = ssl._create_unverified_context()
 
 dmUrl = "https://api.datamuse.com/words?topics={0}"
 
+categories = ["food", "nature", "sport"]
+
 def randomWords(wordList, num): #returns random words from a list (num is number of words returned)
     newList = []
     i = 0
     while ( i < num ):
-        r = random.randint(0, len(wordList))
+        r = random.randint(0, len(wordList) - 1)
         i += 1
         newList.append(wordList[i])
     return newList
 
+def random_word(word_list):
+    return random.choice(word_list)
+
+def random_list(size):
+    new_list = []
+    all_words = []
+    for cat in categories:
+        all_words.append(category(cat))
+    for i in range(size):
+        selected_cat = random.choice(all_words)
+        new_list.append(random_word(selected_cat))
+    return new_list
 
 def category(category): #returns all words in a category
     url = dmUrl.format(category)
@@ -35,7 +49,7 @@ def rangeWords(start,end,wordList): #returns words between start and end index o
         i += 1
     return words
 
-nature = category("nature")
-print(nature)
-print(randomWords(nature, 15))
-print(rangeWords(0,10,nature))
+# nature = category("nature")
+# print(nature)
+# print(randomWords(nature, 15))
+# print(rangeWords(0,10,nature))
