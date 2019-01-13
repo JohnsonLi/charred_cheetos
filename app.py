@@ -66,7 +66,10 @@ def logout():
 #---------- Category ----------
 
 #---------- Levels ----------
-
+@app.route("/game")
+def game():
+    word_bank = ['cat','bobcat','rhinoceros','communism','dog']
+    return render_template("game.html", board = puzzle.generate(word_bank))
 
 
 if __name__ == "__main__":

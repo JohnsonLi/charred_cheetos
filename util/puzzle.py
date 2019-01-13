@@ -20,7 +20,7 @@ def generate(word_bank):
     result['puzzle'] = ws
     result['words'] = added_words
 
-    return result
+    return ws
 
 def is_outside(r, c, size):
     return r < 0 or r >= size or c < 0 or c >= size
@@ -72,6 +72,6 @@ def fillRandom():
                 ws[r][c] = random.choice(alphabet)
 
 generated = generate(word_bank)
-print(to_string(generated['puzzle']))
-print(generated['words'])
+# print(to_string(generated['puzzle']))
+# print(generated['words'])
 

@@ -4,5 +4,26 @@
 <!-- game board -->
 
 <!-- display leaderboard if applicable -->
+<style>
+    td {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+</style>
+{% block content %}
+<table id="puzzle" border="1">
+    <tbody>
+        {% for row in board %}
+        <tr>
+            {% for letter in row %}
+            <td class="letter">{{letter}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
+<div id="selected"></div>
+
+<script src="../static/game.js"></script>
 {% endblock %}

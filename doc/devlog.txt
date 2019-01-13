@@ -91,5 +91,7 @@ johnsonL, kennyL -- 2019-01-13 1:20
 --------------------------------------------------------------
 created javascript of board and implemented highlighting the words
 added function to fill out rest of board with random letters
+created display for word search in game.html
 **bug with moving cursor out of board (highlighted word doesn't disappear)
+**bug with checking for correct word in a list
 ==============================================================
