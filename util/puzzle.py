@@ -3,7 +3,7 @@ import random
 word_bank = ['cat','bobcat','rhinoceros','communism','dog']
 added_words = []
 word_bank.sort(key=len, reverse=True)
-
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 size = 12
 max_tries = len(word_bank) * 100
 
@@ -15,7 +15,7 @@ def generate(word_bank):
         for tries in range(max_tries):
             if insert_word(word):
                 break
-
+    fillRandom()
     result = {}
     result['puzzle'] = ws
     result['words'] = added_words
@@ -42,14 +42,14 @@ def insert_word(word):
         # print(str(row_ind) + " " + str(col_ind))
 
         if is_outside(row_ind, col_ind, size):
-            return False;
+            return False
 
         if word[i] != ws[row_ind][col_ind] and ws[row_ind][col_ind] != '_':
             return False
 
     for char in word:
         # print(str(r) + " " + str(c))
-        ws[r][c] = char;
+        ws[r][c] = char
         r += offset_r
         c += offset_c
 
@@ -65,7 +65,13 @@ def to_string(ws):
 
     return string
 
-# generated = generate(word_bank)
-# print(to_string(generated['puzzle']))
-# print(generated['words'])
+def fillRandom():
+    for r in range(size):
+        for c in range(size):
+            if ws[r][c] == "_":
+                ws[r][c] = random.choice(alphabet)
+
+generated = generate(word_bank)
+print(to_string(generated['puzzle']))
+print(generated['words'])
 
