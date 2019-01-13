@@ -28,7 +28,7 @@ def generate(word_bank, trials, ws):
                 # print("added: " + word)
                 wb.append(word)
                 break
-    # fillRandom()
+    fillRandom(ws)
     result = {}
     result['puzzle'] = ws
     result['words'] = wb
@@ -78,7 +78,7 @@ def to_string(ws):
 
     return string
 
-def fillRandom():
+def fillRandom(ws):
     for r in range(size):
         for c in range(size):
             if ws[r][c] == "_":
