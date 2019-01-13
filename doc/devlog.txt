@@ -96,6 +96,11 @@ created display for word search in game.html
 **bug with checking for correct word in a list
 ==============================================================
 
+johnsonL-- 2019-01-13 13:24
+--------------------------------------------------------------
+fixed: correct will stay highlighted.
+==============================================================
+
 joyceL-- 2019-01-13 13:38
 --------------------------------------------------------------
 fixed: lifting cursor out of board will cancel selection
