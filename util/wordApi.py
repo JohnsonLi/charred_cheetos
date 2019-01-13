@@ -4,7 +4,7 @@ ctxt = ssl._create_unverified_context()
 
 dmUrl = "https://api.datamuse.com/words?topics={0}"
 
-categories = ["food", "nature", "sport"]
+categories = ["food", "nature", "sport","animals", "color", "math"]
 
 def randomWords(wordList, num): #returns random words from a list (num is number of words returned)
     newList = []
