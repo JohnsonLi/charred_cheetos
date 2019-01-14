@@ -2,5 +2,17 @@
 
 {% block title %} Select a Category {% endblock %}
 <!-- users can select from a list of predefined categories -->
+{% block content %}
+
+<br>
+<ul>
+{% for category in categories %}
+<form action="/game">
+  <button class="btn" type="submit" href="/game" name="mode" value={{category}}> {{category}} </button>
+</form>
+<br>
+
+{% endfor %}
+</ul>
 
 {% endblock %}

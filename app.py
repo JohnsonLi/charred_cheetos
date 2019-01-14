@@ -3,8 +3,7 @@ import os, json
 from flask import Flask, request, render_template, \
      flash, session, url_for, redirect
 
-from util import db, puzzle
-
+from util import db, puzzle, wordApi
 
 app = Flask(__name__)
 
@@ -13,7 +12,9 @@ app.secret_key = os.urandom(32)
 #---------- Main Page ----------
 @app.route("/")
 def home():
-    return render_template("home.html")
+    if 'logged_in' in session:
+        return render_template("home.html", logged_in=True)
+    return render_template("home.html", logged_in=False)
 
 #---------- Login/Register----------
 @app.route("/login")
@@ -67,6 +68,10 @@ def random():
 #---------- Custom ----------
 
 #---------- Category ----------
+@app.route("/categories")
+def categories():
+    categories = [word.capitalize() for word in wordApi.get_categories()]
+    return render_template("categories.html", categories=categories)
 
 #---------- Levels ----------
 @app.route("/game")
@@ -74,7 +79,7 @@ def game():
     size = 12
     ws = [['_' for i in range(size)] for i in range(size)]
     mode = request.args["mode"]
-    game = puzzle.create_puzzle(mode, ws)
+    game = puzzle.create_puzzle(mode, ws, size)
     # print(game["words"])
     # print(str(len(game['words'])) + " words added")
 
