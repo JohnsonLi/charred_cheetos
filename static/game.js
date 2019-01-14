@@ -2,6 +2,7 @@ const body = document.querySelector('body');
 const puzzle = document.getElementById('puzzle');
 const letters = document.querySelectorAll('.letter');
 const selectedLetters = document.getElementById('selected');
+const timer = document.getElementById('timer-number');
 
 let anchor = null;
 let selected = [];
@@ -16,9 +17,6 @@ let directionList = ["right", "uprightdiag", "up", "upleftdiag", "left", "downle
 let directionChosen = false;
 let currentDirection;
 let lockedDirection = null;
-
-// init for flask
-console.log(words)
 
 // ============== event listeners for interacting with puzzle ==============
 letters.forEach(item => {
@@ -156,6 +154,9 @@ let check = () => {
     }
     // console.log(correct);
     // console.log(words);
+    if(words.length == 0){
+        clearInterval(timerInterval);
+    }
 
     directionChosen = false;
     selectedLetters.innerHTML = '__________________';
@@ -207,3 +208,9 @@ let getDirection = angle => {
     var val = Math.floor((angle / 45) + 0.5);
     return directionList[(val % 8)];
 };
+
+let timerInterval = setInterval(() => {
+    console.log(timer.innerHTML)
+    timer.innerHTML = (parseInt(timer.innerHTML) + 1).toString()
+}, 1000);
+

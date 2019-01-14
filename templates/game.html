@@ -10,25 +10,38 @@
 </style>
 {% block content %}
 <div>
-  <div id="selected">__________________</div>
-  <br />
-  <table id="puzzle" border="0">
-    <tbody>
-      {% for row in board %}
-      <tr>
-        {% for letter in row %}
-        <td class="letter">{{ letter }}</td>
+  
+  <div id="word-bank">
+      <h3>Word Bank</h3>
+      <p>{% for word in wb %} {{ word }} | {% endfor %}</p>
+  </div>
+  <div id="puzzle">
+    <table>
+      <tbody>
+        {% for row in board %}
+        <tr>
+          {% for letter in row %}
+          <td class="letter">{{ letter }}</td>
+          {% endfor %}
+        </tr>
         {% endfor %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div id="selected">__________________</div>
+  <br>
+  <div id="timer">
+    <span id="timer-number"> 0 </span> s
+  </div>
+  
+  
 </div>
 
-<h3>Word Bank</h3>
-<p>{% for word in wb %} {{ word }} | {% endfor %}</p>
+
 
 <script>
+  // shows syntax error but it's how jinja works
   let words = {{wb|safe}};
 </script>
 <script src="../static/game.js"></script>

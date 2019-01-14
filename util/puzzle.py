@@ -30,8 +30,8 @@ def generate(word_bank, trials, ws):
                 break
     fillRandom(ws)
     result = {}
-    result['puzzle'] = ws
-    result['words'] = wb
+    result['puzzle'] = [[letter.upper() for letter in row] for row in ws]
+    result['words'] = [word.upper() for word in wb]
 
     return result
 
