@@ -19,6 +19,13 @@
                     <a href="/register"> Register </a>  
                 </ul>
             </div>
+        {% else %}
+            <div class="justify-content-between">
+                <ul class="navbar-nav mr-auto">
+                    Hi, {{user}}  
+                    <a href="/logout"> Logout </a>  
+                </ul>
+            </div>
         {% endif %}
     </nav>
 

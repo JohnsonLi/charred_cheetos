@@ -129,3 +129,10 @@ johnsonL-- 2019-01-13 21:25
 --------------------------------------------------------------
 Added categories for wordsearch
 ==============================================================
+
+johnsonL-- 2019-01-13 22:08
+--------------------------------------------------------------
+Added custom for wordsearch
+Added some styling for templates
+Added jinja stuff for user session (showing when they're logged in)
+==============================================================

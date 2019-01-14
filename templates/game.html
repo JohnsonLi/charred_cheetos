@@ -13,6 +13,9 @@
   
   <div id="word-bank">
       <h3>Word Bank</h3>
+      {% if not wb %}
+      <p> Not a valid category. Have fun finding nothing. </p>
+      {% endif%}
       <p>{% for word in wb %} {{ word }} | {% endfor %}</p>
   </div>
   <div id="puzzle">
