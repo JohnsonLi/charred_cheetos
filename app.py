@@ -96,12 +96,17 @@ def game():
         pass
     ws = [['_' for i in range(size)] for i in range(size)]
 
+    # the following if statement does not allow a new mode after the first
+    # since there will be a mode ins session
+    # not using this might break something
     if 'mode' not in session:
         session['mode'] = request.args["mode"]
+
+    # same with this if
     if 'category' not in session:
         session['custom_category'] = custom_category
-    mode = session['mode']
-    custom_category = session['custom_category']
+
+    mode = request.args["mode"]
     game = puzzle.create_puzzle(mode, ws, size, custom_category)
     # print(game["words"])
     # print(str(len(game['words'])) + " words added")
