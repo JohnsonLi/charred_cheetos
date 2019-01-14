@@ -16,7 +16,7 @@
       {% if not wb %}
       <p> Not a size or valid category. Have fun finding nothing. </p>
       {% endif%}
-      <p>{% for word in wb %} {{ word }} | {% endfor %}</p>
+      <p>{% for word in wb %} <span id="word">{{ word }}</span> | {% endfor %}</p>
   </div>
   <div id="puzzle">
     <table>

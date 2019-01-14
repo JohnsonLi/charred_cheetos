@@ -102,7 +102,7 @@ def game():
         pass
     try:
     # print("getting category")
-    t = db.load_pb(session["logged_in"], custom_category)
+        t = db.load_pb(session["logged_in"], custom_category)
     except:
         print("not found")
         t = False
