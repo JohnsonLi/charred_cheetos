@@ -3,7 +3,7 @@
 {% block title %} Register {% endblock %}
 
 {% block content %}
-<div class="userInfo">
+<div id="user-info">
 
     {% set msgs = get_flashed_messages() %}<!--If input criteria aren't fullfilled upon submitting, flash errors -->
     {% for each in msgs %}

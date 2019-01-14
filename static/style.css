@@ -52,3 +52,15 @@ td {
 #timer {
   text-align: center;
 }
+
+#user-info {
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+}
+
+#custom {
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+}
