@@ -13,7 +13,7 @@ app.secret_key = os.urandom(32)
 @app.route("/")
 def home():
     if 'logged_in' in session:
-        return render_template("home.html", logged_in=True)
+        return render_template("home.html", logged_in=True, user=session['logged_in'])
     return render_template("home.html", logged_in=False)
 
 #---------- Login/Register----------
@@ -68,28 +68,37 @@ def random():
 #---------- Custom ----------
 @app.route("/custom")
 def custom():
-    return render_template("custom.html")
+    if 'logged_in' in session:
+        return render_template("custom.html", logged_in=True, user=session['logged_in'])
+    return render_template("custom.html", logged_in=False)
+
 #---------- Category ----------
 @app.route("/categories")
 def categories():
     categories = [word.capitalize() for word in wordApi.get_categories()]
-    return render_template("categories.html", categories=categories)
+    if 'logged_in' in session:
+        return render_template("categories.html", categories=categories, logged_in=True, user=session['logged_in'])
+    return render_template("categories.html", categories=categories, logged_in=False)
 
 #---------- Levels ----------
 @app.route("/game")
 def game():
     size = 12
+    custom_category = ''
     try:
-        size = request.args['size']
+        size = int(request.args['size'])
+        custom_category = request.args['category']
     except:
         pass
     ws = [['_' for i in range(size)] for i in range(size)]
     mode = request.args["mode"]
-    game = puzzle.create_puzzle(mode, ws, size)
+    game = puzzle.create_puzzle(mode, ws, size, custom_category)
     # print(game["words"])
     # print(str(len(game['words'])) + " words added")
+    if 'logged_in' in session:
+        return render_template("game.html", board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'])    
+    return render_template("game.html", board = game["puzzle"], wb = game["words"], logged_in=False)
 
-    return render_template("game.html", board = game["puzzle"], wb = game["words"])
 
 if __name__ == "__main__":
     app.debug = True
