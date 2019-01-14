@@ -4,7 +4,7 @@ Johnson Li (PM), Kenny Li, Joyce Liao, Cheryl Qian
 ## Alphabet Goop
 
 ### Project Overview
-Our app is an in-browser wordsearch game. Users can choose from a variety of categories and have their completion go on a leaderboard once logged in. 
+Our app is an in-browser word search game. Users can choose from a variety of categories and have their completion time go on a leaderboard once logged in. 
 
 ### Launch Instructions
 #### Running Flask App
