@@ -23,15 +23,15 @@ table {
 }
 
 td {
-  height: 60px;
-  width: 60px;
+  height: 55px;
+  width: 55px;
 
   padding: 0px;
 
   empty-cells: show;
   text-align: center;
   vertical-align: baseline;
-  font-size: 40px;
+  font-size: 35px;
   cursor: pointer;
 }
 
@@ -45,6 +45,8 @@ td {
 #word-bank {
   text-align: center;
   overflow: auto;
+  width: 50%;
+  margin: auto;
 }
 
 #timer {

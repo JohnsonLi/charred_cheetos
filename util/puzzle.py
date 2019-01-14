@@ -5,30 +5,35 @@ from util import wordApi
 # word_bank = ['cat','bobcat','rhinoceros','communism','dog']
 # word_bank.sort(key=len, reverse=True)
 alphabet = "abcdefghijklmnopqrstuvwxyz"
-size = 12
-num_words = 12
 
 # ws = [['_' for i in range(size)] for i in range(size)]
 offset = [0, 1, -1]
 
-def create_puzzle(mode, ws):
+def create_puzzle(mode, ws, size):
+    word_bank = []
     if (mode == "random"):
-        word_bank = wordApi.random_list(num_words)
+        word_bank = wordApi.random_list(round(size / 2 + 6))
         print(word_bank)
+    else:
+        api_words = wordApi.category(mode);
+        try:
+            word_bank = random.sample(api_words, size / 2 + 6)
+        except:
+            word_bank = api_words
     word_bank.sort(key=len, reverse=True)
     max_tries = len(word_bank) * 100
-    return generate(word_bank, max_tries, ws)
+    return generate(word_bank, max_tries, ws, size)
 
-def generate(word_bank, trials, ws):
+def generate(word_bank, trials, ws, size):
     wb = []
     for word in word_bank:
         # print("trying: " + word)
         for tries in range(trials): # keep inserting until max tries exceeded
-            if insert_word(word, ws): # go on to next word if current word is inserted
+            if insert_word(word, ws, size): # go on to next word if current word is inserted
                 # print("added: " + word)
                 wb.append(word)
                 break
-    fillRandom(ws)
+    fillRandom(ws, size)
     result = {}
     result['puzzle'] = [[letter.upper() for letter in row] for row in ws]
     result['words'] = [word.upper() for word in wb]
@@ -38,7 +43,7 @@ def generate(word_bank, trials, ws):
 def is_outside(r, c, size):
     return r < 0 or r >= size or c < 0 or c >= size
 
-def insert_word(word, ws):
+def insert_word(word, ws, size):
     # select a direction
     offset_r = random.choice(offset)
     offset_c = random.choice(offset)
@@ -78,7 +83,7 @@ def to_string(ws):
 
     return string
 
-def fillRandom(ws):
+def fillRandom(ws, size):
     for r in range(size):
         for c in range(size):
             if ws[r][c] == "_":

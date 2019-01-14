@@ -1,10 +1,8 @@
-import urllib.request, json, ssl, random
-
-ctxt = ssl._create_unverified_context()
+import urllib.request, json, random
 
 dmUrl = "https://api.datamuse.com/words?topics={0}"
 
-categories = ["food", "nature", "sport","animals", "color", "math"]
+categories = ["nature", "sport","animals", "color", "math", "drinks", "science", "dessert", "fruits", "vegetables"]
 
 def randomWords(wordList, num): #returns random words from a list (num is number of words returned)
     newList = []
@@ -30,7 +28,7 @@ def random_list(size):
 
 def category(category): #returns all words in a category
     url = dmUrl.format(category)
-    req = urllib.request.urlopen(url, context = ctxt)
+    req = urllib.request.urlopen(url)
     data = json.loads(req.read())
     words = []
     for d in data:
@@ -49,7 +47,10 @@ def rangeWords(start,end,wordList): #returns words between start and end index o
         i += 1
     return words
 
-# nature = category("nature")
+def get_categories():
+    return categories
+
+# nature = category("vegetables")
 # print(nature)
 # print(randomWords(nature, 15))
 # print(rangeWords(0,10,nature))
