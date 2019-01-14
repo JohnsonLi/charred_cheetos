@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito|Righteous');
 
 * {
-  font-family: 'Righteous';
+  font-family: 'Nunito';
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 table {
@@ -19,8 +23,8 @@ table {
 }
 
 td {
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
 
   padding: 0px;
 
@@ -31,13 +35,18 @@ td {
   cursor: pointer;
 }
 
-* {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+#selected {
+  text-align: center;
 }
 
-#selected {
+#puzzle {
+}
+
+#word-bank {
+  text-align: center;
+  overflow: auto;
+}
+
+#timer {
   text-align: center;
 }
