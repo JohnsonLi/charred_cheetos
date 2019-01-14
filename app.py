@@ -57,7 +57,7 @@ def logout():
     try:
         session.pop("logged_in")
     finally:
-        return redirect(url_for("login"))
+        return redirect(url_for("home"))
 
 #---------- Random ----------
 @app.route("/random")

@@ -1,5 +1,5 @@
 import sqlite3
-DB_FILE="../data/wordsearch.db"
+DB_FILE="./data/wordsearch.db"
 
 # ===================== Initiate =====================
 def createTable():
