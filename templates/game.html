@@ -14,7 +14,7 @@
   <div id="word-bank">
       <h3>Word Bank</h3>
       {% if not wb %}
-      <p> Not a valid category. Have fun finding nothing. </p>
+      <p> Not a size or valid category. Have fun finding nothing. </p>
       {% endif%}
       <p>{% for word in wb %} {{ word }} | {% endfor %}</p>
   </div>
@@ -43,8 +43,6 @@
   <form action="/game" id="timerForm" >
     <input type="hidden" id="time" name="time">
   </form>
-
-
 
 </div>
 
