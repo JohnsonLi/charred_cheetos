@@ -3,6 +3,7 @@ const puzzle = document.getElementById('puzzle');
 const letters = document.querySelectorAll('.letter');
 const selectedLetters = document.getElementById('selected');
 const timer = document.getElementById('timer-number');
+const wordBank = document.querySelectorAll('#word');
 
 let anchor = null;
 let selected = [];
@@ -135,10 +136,19 @@ let check = () => {
     // console.log(selected);
     // console.log(words.indexOf(selectedLetters.innerHTML) != -1);
     index = words.indexOf(selectedLetters.innerHTML);
+    let word = words[index]
     if (index != -1) {
         selected.forEach(item => {
             item.style.color = 'teal';
             correct.push(item);
+        });
+        // console.log(wordBank)
+        wordBank.forEach(item => {
+          // console.log(word)
+          // console.log(item)
+          if (word == item.innerHTML) {
+            item.style["text-decoration"] = "line-through";
+          }
         });
 
         words.splice(index, 1);
@@ -157,10 +167,10 @@ let check = () => {
     // console.log(words);
     if(words.length == 0){
       document.getElementById("time").value = timer.innerHTML
-      console.log(document.getElementById("time").value)
-      console.log(timer.innerHTML)
+      // console.log(document.getElementById("time").value)
+      // console.log(timer.innerHTML)
       document.getElementById("timerForm").submit();
-      console.log("form submmitted");
+      // console.log("form submmitted");
       clearInterval(timerInterval);
     }
 
