@@ -3,7 +3,7 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-<div class="userInfo">
+<div id="user-info">
 
     <!--Flashes errors if user/pass are wrong or blank -->
     {% set msgs = get_flashed_messages() %}
@@ -24,6 +24,6 @@
       <br>
       <div><button type="submit">Login</button></div>
       <br>
-      </form>
+    </form>
 </div>
 {% endblock %}

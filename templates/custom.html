@@ -2,5 +2,25 @@
 
 {% block title %} Custom Game {% endblock %}
 <!-- users can specify number of words and size of board -->
+{% block content %}
+<div id="custom">
+
+  <h3>Custom</h3>
+  <form action="/game">
+      <div class="form-group">
+          <label for="size">Size</label>
+          <input type="number" name="suze" class="form-control" id="size" placeholder="size">
+      </div>
+      <div class="form-group">
+          <label for="category">Category</label>
+          <input type="text" name="category" class="form-control" id="category" placeholder="category">
+      </div>
+    <br>
+    <div><button type="submit">Submit</button></div>
+    <br>
+  </form>
+  
+</div>
+
 
 {% endblock %}

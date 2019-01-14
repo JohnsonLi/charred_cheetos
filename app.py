@@ -66,7 +66,9 @@ def random():
     return redirect(url_for("game", mode="random"))
 
 #---------- Custom ----------
-
+@app.route("/custom")
+def custom():
+    return render_template("custom.html")
 #---------- Category ----------
 @app.route("/categories")
 def categories():
@@ -77,6 +79,10 @@ def categories():
 @app.route("/game")
 def game():
     size = 12
+    try:
+        size = request.args['size']
+    except:
+        pass
     ws = [['_' for i in range(size)] for i in range(size)]
     mode = request.args["mode"]
     game = puzzle.create_puzzle(mode, ws, size)

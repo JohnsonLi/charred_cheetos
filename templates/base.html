@@ -12,16 +12,15 @@
 <body><!--Replaceable body -->
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/">Alphabet Goop</a>
-        {% if logged_in %}
+        {% if not logged_in %}
             <div class="justify-content-between">
                 <ul class="navbar-nav mr-auto">
                     <a href="/login"> Login </a>  
-                    <a href="/logout"> Logout </a>  
+                    <a href="/register"> Register </a>  
                 </ul>
             </div>
         {% endif %}
     </nav>
-    <br>
 
 
     {% block content %}
