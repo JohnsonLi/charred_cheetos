@@ -53,6 +53,10 @@ td {
   text-align: center;
 }
 
+#best {
+  text-align: center;
+}
+
 #user-info {
   margin: auto;
   margin-top: 5%;

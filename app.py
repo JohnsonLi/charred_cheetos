@@ -86,19 +86,24 @@ def game():
     size = 12
     custom_category = ''
     try:
+        t = request.args["time"]
+    except:
+        t = "Playing"
+    try:
         size = int(request.args['size'])
         custom_category = request.args['category']
     except:
         pass
     ws = [['_' for i in range(size)] for i in range(size)]
-    mode = request.args["mode"]
+    if 'mode' not in session:
+        session['mode'] = request.args["mode"]
+    mode = session['mode']
     game = puzzle.create_puzzle(mode, ws, size, custom_category)
     # print(game["words"])
     # print(str(len(game['words'])) + " words added")
     if 'logged_in' in session:
-        return render_template("game.html", board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'])    
-    return render_template("game.html", board = game["puzzle"], wb = game["words"], logged_in=False)
-
+        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'])
+    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False)
 
 if __name__ == "__main__":
     app.debug = True
