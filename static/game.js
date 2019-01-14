@@ -159,7 +159,8 @@ let check = () => {
       document.getElementById("time").value = timer.innerHTML
       console.log(document.getElementById("time").value)
       console.log(timer.innerHTML)
-    //   document.getElementById("timerForm").submit();
+      document.getElementById("timerForm").submit();
+      console.log("form submmitted");
       clearInterval(timerInterval);
     }
 

@@ -38,10 +38,16 @@
     <span id="timer-number"> 0 </span> s
   </div>
   <div id="best">
-   High Score: {{ time }}s
+    Personal Best:
+    {% if not time %}
+        N/A
+    {% else %}
+        {{ time }}s
+    {% endif %}
   </div>
-  <form action="/game" id="timerForm" >
+  <form action="/time" id="timerForm" >
     <input type="hidden" id="time" name="time">
+    <input type="hidden" name="cat" value={{cat}}>
   </form>
 
 </div>

@@ -136,3 +136,10 @@ Added custom for wordsearch
 Added some styling for templates
 Added jinja stuff for user session (showing when they're logged in)
 ==============================================================
+
+joyceL-- 2019-01-14 13:12
+--------------------------------------------------------------
+Revised db and functions to record personal best
+Connected app.py and game.js to db, users' personal best are now recorded
+**need to get rid of pb functionality for random and custom and guests
+==============================================================
