@@ -10,26 +10,54 @@
 
 </head>
 <body><!--Replaceable body -->
-    <nav class="navbar navbar-light bg-light">
+    <!-- <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/">Alphabet Goop</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="/random">Random</a></li>
+                <li class="nav-item"><a class="nav-link" href="/custom">Custom</a></li>
+            </ul>
+        </div> -->
+    <!-- </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" id="logo" href="/">Alphabet Goop</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        {% block nav %}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/categories">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/random">Random</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/custom">Custom</a>
+            </li>
+        </ul>
+        {% endblock %}
+        </div>
         {% if not logged_in %}
-            <div class="justify-content-between">
-                <ul class="navbar-nav mr-auto">
-                    <a href="/login"> Login </a>  
-                    <a href="/register"> Register </a>  
-                </ul>
-            </div>
+            <a class="nav-link nav-lr" href="/login"> Login </a>
+            <a class="nav-link nav-lr" href="/register"> Register </a>
         {% else %}
-            <div class="justify-content-between">
-                <ul class="navbar-nav mr-auto">
-                    Hi, {{user}}  
-                    <a href="/logout"> Logout </a>  
-                </ul>
-            </div>
-        {% endif %}
+        <div class="justify-content-between">
+            <ul class="navbar-nav mr-auto">
+                Hi, {{user}}
+                <a class-"nav-link nav-lr" href="/logout"> Logout </a>
+            </ul>
+        </div>
+    {% endif %}
     </nav>
-
-
+    {% block alert %}
+    <div class="msg">
+        {% set msgs = get_flashed_messages() %}
+        {% for each in msgs %}
+          <div class="alert alert-warning" role="alert" id="msg">{{each}}</div>
+        {% endfor %}
+    </div>
+    {% endblock %}
     {% block content %}
     content
     {% endblock %}

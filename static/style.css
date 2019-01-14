@@ -12,6 +12,12 @@
   text-align: center;
 }
 
+.msg {
+    width:50%;
+    margin: auto;
+    margin-top:10px;
+}
+/* ================== */
 table {
   padding: 0px;
 
@@ -56,13 +62,37 @@ td {
 #best {
   text-align: center;
 }
-
+/* ================== */
 #user-info {
   margin: auto;
-  margin-top: 5%;
+  margin-top: 1%;
   width: 50%;
 }
+.navbar {
+    background-color: #c7efcf;
+    padding:10px;
+}
 
+#logo {
+    color: #567650;
+    padding-left:10px;
+    font-size:25px;
+}
+
+#navbar_user {
+    padding-right: 20px;
+    /* padding-top: 2px; */
+    color: #856A5D;
+}
+
+.nav-link {
+    color:#89bc80;
+}
+
+.nav-lr {
+    color:#778f7c;
+}
+/* ================== */
 #custom {
   margin: auto;
   margin-top: 5%;

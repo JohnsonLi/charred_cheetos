@@ -4,14 +4,6 @@
 
 {% block content %}
 <div id="user-info">
-
-    <!--Flashes errors if user/pass are wrong or blank -->
-    {% set msgs = get_flashed_messages() %}
-    {% for each in msgs %}
-      <div class="alert alert-warning" role="alert">{{each}}</div>
-
-    {% endfor %}
-
     <form action="/auth"><!--Able to login by submitting existing user/pass or make new account by pressing "register"-->
         <div class="form-group">
             <label for="username">Username</label>
