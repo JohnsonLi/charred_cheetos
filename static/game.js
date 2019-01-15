@@ -27,7 +27,7 @@ letters.forEach(item => {
         // console.log("down")
         if (anchor == null) { // first letter selected
             if (selected.indexOf(item) == -1) {
-                if(selectedLetters.innerHTML == '__________________'){
+                if(selectedLetters.innerHTML == 'Select a Word'){
                     selectedLetters.innerHTML = ''
                     selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
                 } else {
@@ -177,7 +177,7 @@ let check = () => {
     }
 
     directionChosen = false;
-    selectedLetters.innerHTML = '__________________';
+    selectedLetters.innerHTML = "Select a Word";
     selected = [];
     startX = 0;
     startY = 0;
