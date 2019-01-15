@@ -149,8 +149,13 @@ kennyL-- 2019-01-14 13:50
 Added strike-through for found words
 ==============================================================
 
-
 joyceL-- 2019-01-14 14:56
 --------------------------------------------------------------
 finished styling navbar and flashed messages
+==============================================================
+
+joyceL-- 2019-01-15 09:13
+--------------------------------------------------------------
+fixed not displaying personal best for random/custom and for not logged in users
+js will not submit time if mode is random or custom
 ==============================================================

@@ -83,29 +83,28 @@ def categories():
 #---------- Game ----------
 @app.route("/time")
 def recordTime():
-    print("attempting to record")
-    new = request.args["time"]
-    user = session["logged_in"]
-    cat = request.args["cat"]
-    db.update_pb(user, cat, new)
-    print("time added")
+    if "logged_in" in session:
+        print("attempting to record")
+        new = request.args["time"]
+        user = session["logged_in"]
+        cat = request.args["cat"]
+        db.update_pb(user, cat, new)
+        print("time added")
     return redirect(url_for("home"))
 
 @app.route("/game")
 def game():
     size = 12
     custom_category = ''
+    t = False
+    not_custom = False
     try:
         size = int(request.args['size'])
         custom_category = request.args['category']
     except:
         pass
-    try:
-    # print("getting category")
-        t = db.load_pb(session["logged_in"], custom_category)
-    except:
-        print("not found")
-        t = False
+    if custom_category in wordApi.get_categories():
+        not_custom = True
     ws = [['_' for i in range(size)] for i in range(size)]
 
     # the following if statement does not allow a new mode after the first
@@ -123,8 +122,9 @@ def game():
     # print(game["words"])
     # print(str(len(game['words'])) + " words added")
     if 'logged_in' in session:
-        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], cat=custom_category)
-    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, cat=custom_category)
+        t = db.load_pb(session["logged_in"], custom_category)
+        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], cat=custom_category, need_timer=not_custom)
+    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, cat=custom_category, need_timer=not_custom)
 
 if __name__ == "__main__":
     app.debug = True
