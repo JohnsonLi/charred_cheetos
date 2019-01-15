@@ -29,20 +29,22 @@ table {
 }
 
 td {
-  height: 55px;
-  width: 55px;
+  height: 45px;
+  width: 45px;
 
   padding: 0px;
 
   empty-cells: show;
   text-align: center;
   vertical-align: baseline;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
 }
 
 #selected {
   text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 #puzzle {

@@ -18,6 +18,8 @@
       {% endif%}
       <p>{% for word in wb %} <span id="word">{{ word }}</span> | {% endfor %}</p>
   </div>
+  <div id="selected">Select a Word</div>
+  <br>
   <div id="puzzle">
     <table>
       <tbody>
@@ -32,7 +34,6 @@
     </table>
   </div>
   <br>
-  <div id="selected">__________________</div>
   <br>
   {% if need_timer %}
   <div id="timer">
@@ -61,6 +62,7 @@
   // shows syntax error but it's how jinja works
   let words = {{wb|safe}};
   let submit_time = need_timer;
+  //let cat = cat;
 </script>
 <script src="../static/game.js"></script>
 
