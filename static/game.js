@@ -166,11 +166,13 @@ let check = () => {
     // console.log(correct);
     // console.log(words);
     if(words.length == 0){
-      document.getElementById("time").value = timer.innerHTML
-      // console.log(document.getElementById("time").value)
-      // console.log(timer.innerHTML)
-      document.getElementById("timerForm").submit();
-      // console.log("form submmitted");
+        if (submit_time) {
+          document.getElementById("time").value = timer.innerHTML
+          // console.log(document.getElementById("time").value)
+          // console.log(timer.innerHTML)
+          document.getElementById("timerForm").submit();
+          // console.log("form submmitted");
+      }
       clearInterval(timerInterval);
     }
 

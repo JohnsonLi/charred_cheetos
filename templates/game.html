@@ -34,22 +34,25 @@
   <br>
   <div id="selected">__________________</div>
   <br>
+  {% if need_timer %}
   <div id="timer">
     <span id="timer-number"> 0 </span> s
   </div>
   <div id="best">
-    Personal Best:
-    {% if not time %}
-        N/A
-    {% else %}
-        {{ time }}s
+    {% if logged_in %}
+        Personal Best:
+        {% if not time %}
+            N/A
+        {% else %}
+            {{ time }}s
+        {% endif %}
     {% endif %}
   </div>
   <form action="/time" id="timerForm" >
     <input type="hidden" id="time" name="time">
     <input type="hidden" name="cat" value={{cat}}>
   </form>
-
+  {% endif %}
 </div>
 
 
@@ -57,6 +60,7 @@
 <script>
   // shows syntax error but it's how jinja works
   let words = {{wb|safe}};
+  let submit_time = need_timer;
 </script>
 <script src="../static/game.js"></script>
 
