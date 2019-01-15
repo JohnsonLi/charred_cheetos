@@ -97,7 +97,6 @@ def game():
     size = 12
     custom_category = ''
     t = False
-    not_custom = False
     try:
         size = int(request.args['size'])
         custom_category = request.args['category']
@@ -123,8 +122,8 @@ def game():
     # print(str(len(game['words'])) + " words added")
     if 'logged_in' in session:
         t = db.load_pb(session["logged_in"], custom_category)
-        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], cat=custom_category, need_timer=not_custom)
-    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, cat=custom_category, need_timer=not_custom)
+        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], cat=custom_category)
+    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, cat=custom_category)
 
 if __name__ == "__main__":
     app.debug = True

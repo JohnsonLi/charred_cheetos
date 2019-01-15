@@ -166,14 +166,18 @@ let check = () => {
     // console.log(correct);
     // console.log(words);
     if(words.length == 0){
-        if (submit_time) {
-          document.getElementById("time").value = timer.innerHTML
-          // console.log(document.getElementById("time").value)
-          // console.log(timer.innerHTML)
-          document.getElementById("timerForm").submit();
-          // console.log("form submmitted");
-      }
+      //   if (submit_time) {
+      //     document.getElementById("time").value = timer.innerHTML
+      //     // console.log(document.getElementById("time").value)
+      //     // console.log(timer.innerHTML)
+      //     document.getElementById("timerForm").submit();
+      //     // console.log("form submmitted");
+      // }
       clearInterval(timerInterval);
+      var msg = document.createElement("h3");
+      msg.innerHTML = "Congratulations! You have finished the game!"
+      msg.className = "center";
+      selectedLetters.parentNode.insertBefore(msg, selectedLetters);
     }
 
     directionChosen = false;
