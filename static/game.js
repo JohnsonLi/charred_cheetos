@@ -21,43 +21,42 @@ let currentDirection;
 let lockedDirection = null;
 
 // ============== event listeners for interacting with puzzle ==============
+var choose = function(e) {
+    // console.log("down")
+    if (anchor == null) { // first letter selected
+        if (selected.indexOf(this) == -1) {
+            if(selectedLetters.innerHTML == 'Select a Word'){
+                selectedLetters.innerHTML = ''
+                selectedLetters.innerHTML = selectedLetters.innerHTML + this.innerHTML;
+            } else {
+                selectedLetters.innerHTML = selectedLetters.innerHTML + this.innerHTML;
+
+            }
+            selected.push(this);
+        }
+        this.style.color = 'blue';
+        anchor = this;
+    }
+    startX = e.clientX;
+    startY = e.clientY;
+};
+
+var drag_letter = function(e) {
+    if (anchor != null) {
+        if (!directionChosen) {
+            currentDirection = direction;
+            directionChosen = true;
+        }
+        drawPath(e, this);
+    }
+};
+
 letters.forEach(item => {
+    item.addEventListener('mousedown', choose);
+    item.addEventListener('mouseover', drag_letter);
+})
 
-    item.addEventListener('mousedown', e => {
-        // console.log("down")
-        if (anchor == null) { // first letter selected
-            if (selected.indexOf(item) == -1) {
-                if(selectedLetters.innerHTML == 'Select a Word'){
-                    selectedLetters.innerHTML = ''
-                    selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
-                } else {
-                    selectedLetters.innerHTML = selectedLetters.innerHTML + item.innerHTML;
-
-                }
-                selected.push(item);
-            }
-            item.style.color = 'blue';
-            anchor = item;
-        }
-        startX = e.clientX;
-        startY = e.clientY;
-    });
-
-    item.addEventListener('mouseover', (e) => {
-
-        if (anchor != null) {
-            if (!directionChosen) {
-                currentDirection = direction;
-                directionChosen = true;
-            }
-            drawPath(e, item);
-        }
-    });
-
-});
-
-
-body.addEventListener('mousemove', e => {
+var drag = function(e) {
     // console.log(e)
     let clientY = e.clientY;
     currentX = e.clientX - startX;
@@ -65,15 +64,17 @@ body.addEventListener('mousemove', e => {
     hyp = Math.sqrt(currentX * currentX + currentY * currentY);
     angle = Math.asin(currentX / hyp) * (180 / Math.PI); // angle from starting position to current
     direction = getDirection(normalizeAngle(angle, currentX, currentY, clientY));
-    // console.log(getDirection(normalizeAngle(angle, currentX, currentY, clientY)));
-});
+}
 
-body.addEventListener('mouseup', () => {
+body.addEventListener('mousemove', drag);
+
+var release = function() {
     anchor = null;
     lockedDirection = null;
     check();
-    // clearselected();
-});
+}
+
+body.addEventListener('mouseup', release);
 
 // ============== selecting words in game ==============
 let change_color = (e, direc) => {
@@ -132,6 +133,11 @@ let drawPath = (e) => {
 };
 
 // ============== check for correct selections ==============
+var record_time = function() {
+    document.getElementById("time").value = timer.innerHTML
+    document.getElementById("timerForm").submit();
+};
+
 let check = () => {
     // console.log(selected);
     // console.log(words.indexOf(selectedLetters.innerHTML) != -1);
@@ -174,11 +180,32 @@ let check = () => {
       //     // console.log("form submmitted");
       // }
       clearInterval(timerInterval);
-      var msg = document.createElement("h3");
-      msg.innerHTML = "Congratulations! You have finished the game!"
-      msg.className = "center";
-      selectedLetters.parentNode.insertBefore(msg, selectedLetters);
+      var msg = document.getElementById("finish_msg");
+      msg.style.display = 'block';
+      var buttons = document.getElementById("finish_game");
+      buttons.style.display = 'block';
+      // remove all event listeners
+      letters.forEach(item => {
+        // var clone0 = item.cloneNode(true);
+        // item.parentNode.replaceChild(clone0, item);
+        item.removeEventListener('mousedown', choose);
+        item.removeEventListener('mouseover', drag_letter);
+      });
+
+      body.removeEventListener('mouseover', drag);
+      body.removeEventListener('mouseup', release);
     }
+
+    var time_button = document.getElementById("save_time");
+    if (time_button != null) {
+        time_button.addEventListener('click', record_time);
+    }
+
+    var try_button = document.getElementById("try_again");
+    try_button.addEventListener('click', function() {
+        var new_game = document.getElementById("gameForm");
+        new_game.submit();
+    });
 
     directionChosen = false;
     selectedLetters.innerHTML = "Select a Word";

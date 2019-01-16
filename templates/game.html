@@ -18,6 +18,21 @@
       {% endif%}
       <p>{% for word in wb %} <span id="word">{{ word }}</span> | {% endfor %}</p>
   </div>
+  <h4 class="center" id="finish_msg" style="display:none">Congratulations! You have finished the game!</h4>
+  <div class="center" id="finish_game" style="display:none">
+      {% if logged_in and mode != "custom" and mode != "random" %}<button id="save_time">Submit Time</button>{% endif %}
+      <button id="try_again">Try Again</button>
+  </div>
+  <br>
+  <form action="/time" id="timerForm" >
+    <input type="hidden" id="time" name="time">
+    <input type="hidden" name="category" value={{cat}}>
+  </form>
+  <form action="/game" id="gameForm" >
+    <input type="hidden" name="mode" value={{mode}}>
+    <input type="hidden" name="category" value={{cat}}>
+    <input type="hidden" name="size" value={{size}}>
+  </form>
   <div id="selected">Select a Word</div>
   <br>
   <div id="puzzle">
@@ -46,12 +61,8 @@
         {% else %}
             {{ time }}s
         {% endif %}
+    {% endif %}
   </div>
-  <form action="/time" id="timerForm" >
-    <input type="hidden" id="time" name="time">
-    <input type="hidden" name="cat" value={{cat}}>
-  </form>
-  {% endif %}
 </div>
 
 
