@@ -6,7 +6,7 @@ Johnson Li (PM), Kenny Li, Joyce Liao, Cheryl Qian
 ### Project Overview
 Our app is an in-browser word search game. Users can choose from a variety of categories or create their own puzzle with customizable size and category. For default categories, logged in users can view their personal best upon their first completion of a specific category.
 
-App uses the Datamuse API, but no api key is needed to retrieve data.
+App uses the Datamuse API, but no API key is needed to retrieve data.
 
 ### Launch Instructions
 #### Running Flask App
