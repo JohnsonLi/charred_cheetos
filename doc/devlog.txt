@@ -159,3 +159,14 @@ joyceL-- 2019-01-15 09:13
 fixed not displaying personal best for random/custom and for not logged in users
 js will not submit time if mode is random or custom
 ==============================================================
+
+joyceL-- 2019-01-15 16:54
+--------------------------------------------------------------
+every game is timed now
+pb is displayed for every mode for logged in users
+a message shows up when game is completed
+**need to remove event listeners on all elements
+**new problems found with pb: 
+ need a way to submit and correctly redirects user
+ score should not be submitted if category is random or custom
+==============================================================
