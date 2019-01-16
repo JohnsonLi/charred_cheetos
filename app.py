@@ -83,13 +83,13 @@ def categories():
 #---------- Game ----------
 @app.route("/time")
 def recordTime():
-    if "logged_in" in session:
-        print("attempting to record")
-        new = request.args["time"]
-        user = session["logged_in"]
-        cat = request.args["cat"]
-        db.update_pb(user, cat, new)
-        print("time added")
+    # print("attempting to record")
+    new = request.args["time"]
+    user = session["logged_in"]
+    cat = request.args["category"]
+    db.update_pb(user, cat, new)
+    # print("time added")
+    flash("Time has been saved")
     return redirect(url_for("home"))
 
 @app.route("/game")
@@ -118,12 +118,15 @@ def game():
 
     mode = request.args["mode"]
     game = puzzle.create_puzzle(mode, ws, size, custom_category)
+    # print(size)
+    # print(custom_category)
+    # print(mode)
     # print(game["words"])
     # print(str(len(game['words'])) + " words added")
     if 'logged_in' in session:
         t = db.load_pb(session["logged_in"], custom_category)
-        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], cat=custom_category)
-    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, cat=custom_category)
+        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], mode=mode, cat=custom_category, size=size)
+    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, mode=mode, cat=custom_category, size=size)
 
 if __name__ == "__main__":
     app.debug = True
