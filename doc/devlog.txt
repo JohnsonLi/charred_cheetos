@@ -158,6 +158,8 @@ joyceL-- 2019-01-15 09:13
 --------------------------------------------------------------
 fixed not displaying personal best for random/custom and for not logged in users
 js will not submit time if mode is random or custom
+**bug: timer does not stop sometimes
+**bug: timer does not show up for categories
 ==============================================================
 
 joyceL-- 2019-01-15 16:54
@@ -174,4 +176,11 @@ a message shows up when game is completed
 kennyL-- 2019-01-16 14:04
 --------------------------------------------------------------
 Update design doc
+==============================================================
+
+joyceL-- 2019-01-16 14:12
+--------------------------------------------------------------
+Personal Best finally working!
+Users can try the same puzzle again / submit their time
+No pb displays for random/custom regardless of whether you're logged in
 ==============================================================

@@ -54,7 +54,7 @@
     <span id="timer-number"> 0 </span> s
   </div>
   <div id="best">
-    {% if logged_in %}
+    {% if logged_in and mode != "custom" and mode != "random" %}
         Personal Best:
         {% if not time %}
             N/A
@@ -64,7 +64,6 @@
     {% endif %}
   </div>
 </div>
-
 
 
 <script>
