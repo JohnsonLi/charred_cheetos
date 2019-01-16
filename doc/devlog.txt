@@ -166,7 +166,12 @@ every game is timed now
 pb is displayed for every mode for logged in users
 a message shows up when game is completed
 **need to remove event listeners on all elements
-**new problems found with pb: 
+**new problems found with pb:
  need a way to submit and correctly redirects user
  score should not be submitted if category is random or custom
+==============================================================
+
+kennyL-- 2019-01-16 14:04
+--------------------------------------------------------------
+Update design doc
 ==============================================================
