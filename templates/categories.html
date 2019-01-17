@@ -5,20 +5,19 @@
 {% block content %}
 
 <br>
-<ul>
   <div id="categories">
-  <div class="dropdown">
-    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Word Categories
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+      <h1>Word Categories</h1>
+
       {% for category in categories %}
-      <a class="dropdown-item" href="/game?mode={{ category }}"> {{ category }} </a>
+      {% if loop.index%3 == 1 %}
+      <br><br>
+      {% endif %}
+          <a href="/game?mode={{ category }}"><button class="btn btn-outline-secondary" style="width:150px;" type="button" >
+              {{ category }}
+          </button>
+          </a>
       {% endfor %}
-    </div>
-  </div>
 </div>
-
-</ul>
-
+<br>
 {% endblock %}

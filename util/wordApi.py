@@ -2,7 +2,7 @@ import urllib.request, json, random
 
 dmUrl = "https://api.datamuse.com/words?topics={0}"
 
-categories = ["nature", "sport","animals", "color", "math", "drinks", "science", "dessert", "fruits", "vegetables"]
+categories = ["nature", "sport","animals", "color", "math", "drinks", "science", "dessert", "fruits"]
 
 def randomWords(wordList, num): #returns random words from a list (num is number of words returned)
     newList = []
