@@ -6,13 +6,19 @@
 
 <br>
 <ul>
-{% for category in categories %}
-<form action="/game">
-  <button class="btn" type="submit" href="/game" name="mode" value={{category}}> {{category}} </button>
-</form>
-<br>
+  <div id="categories">
+  <div class="dropdown">
+    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Word Categories
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for category in categories %}
+      <a class="dropdown-item" href="/game?mode={{ category }}"> {{ category }} </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
-{% endfor %}
 </ul>
 
 {% endblock %}

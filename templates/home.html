@@ -5,11 +5,65 @@
 {% block nav %} {% endblock %}
 <!-- landing page -->
 <div id="options">
-  <a href="/categories"> <button class="btn"> Categories</button></a>
-  <a href="/random"> <button class="btn"> Random</button></a>
-  <a href="/custom"> <button class="btn"> Custom</button></a>
-</div>
+  <h1>Main Menu</h1>
+  <br>
+  <p style="color:#53605b;">Welcome to Alphabet Goop! Select a mode to get started.</p>
+  <br>
 
+  <div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" style="text-decoration:none;color:#478c70;" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h5>Game Categories</h5>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+          <p style="color:#53605b;">Choose a default 12 by 12 word search to play with words from different categories!</p>
+        <br>
+          <a href="/categories"> <button class="btn btn-outline-success"> Play </button></a>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" style="text-decoration:none;color:#478c70;" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <h5>Random Game</h5>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <p style="color:#53605b;">Random mode generates a 12 by 12 word search with random words from every category.</p>
+        <br>
+        <a href="/random"> <button class="btn btn-outline-success"> Play </button></a>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" style="text-decoration:none;color:#478c70;" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <h5>Custom Game</h5>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        <p style="color:#53605b;">Create your own game! Challenge yourself by changing puzzle size and creating your own category.</p>
+        <br>
+        <a href="/custom"> <button class="btn btn-outline-success"> Play </button></a>
+      </div>
+    </div>
+  </div>
+</div>
+  <br>
+  <p style="color:grey;">Want to keep track of your scores? <a href="/login" style="color:#478c70;">Log in</a> or <a href="/register" style="color:#478c70;">register</a> to see your personal best.</p>
+</div>
 
 
 <!-- start game as guest -->
