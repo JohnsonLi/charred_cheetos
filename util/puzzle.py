@@ -40,7 +40,7 @@ def generate(word_bank, trials, ws, size):
                 # print("added: " + word)
                 wb.append(word)
                 break
-    fillRandom(ws, size)
+    # fillRandom(ws, size)
     result = {}
     result['puzzle'] = [[letter.upper() for letter in row] for row in ws]
     result['words'] = [word.upper() for word in wb]

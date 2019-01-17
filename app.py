@@ -23,12 +23,16 @@ def login():
 
 @app.route("/auth")
 def authenticate():
-    if db.auth_user(request.args["user"], request.args["password"]):
-        session["logged_in"] = request.args["user"]
+    try:
+        if db.auth_user(request.args["user"], request.args["password"]):
+            session["logged_in"] = request.args["user"]
+            return redirect(url_for("home"))
+        else:
+            flash("username or password is incorrect")
+            return redirect(url_for("login"))
+    except:
+        flash("Something went wrong :(")
         return redirect(url_for("home"))
-    else:
-        flash("username or password is incorrect")
-        return redirect(url_for("login"))
 
 @app.route("/register")
 def register():
@@ -36,20 +40,23 @@ def register():
 
 @app.route("/adduser")
 def add_user():
-    if(not request.args["user"].strip() or not request.args["password"] or not request.args["confirm_password"]):
-        flash("Please fill in all fields")
-        return redirect(url_for("register"))
+    try:
+        if(not request.args["user"].strip() or not request.args["password"] or not request.args["confirm_password"]):
+            flash("Please fill in all fields")
+            return redirect(url_for("register"))
 
-    if(db.check_user(request.args["user"])):
-        flash("User already exists")
-        return redirect(url_for("register"))
+        if(db.check_user(request.args["user"])):
+            flash("User already exists")
+            return redirect(url_for("register"))
 
-    if(request.args["password"] != request.args["confirm_password"]):
-        flash("Passwords don't match")
-        return redirect(url_for("register"))
+        if(request.args["password"] != request.args["confirm_password"]):
+            flash("Passwords don't match")
+            return redirect(url_for("register"))
 
-    db.add_user(request.args["user"], request.args["password"])
-    session["logged_in"] = request.args["user"]
+        db.add_user(request.args["user"], request.args["password"])
+        session["logged_in"] = request.args["user"]
+    except:
+        flash("Something went wrong :(")
     return redirect(url_for("home"))
 
 #---------- Logout ----------
@@ -75,21 +82,31 @@ def custom():
 #---------- Category ----------
 @app.route("/categories")
 def categories():
-    categories = [word.capitalize() for word in wordApi.get_categories()]
-    if 'logged_in' in session:
-        return render_template("categories.html", categories=categories, logged_in=True, user=session['logged_in'])
-    return render_template("categories.html", categories=categories, logged_in=False)
+    try:
+        categories = [word.capitalize() for word in wordApi.get_categories()]
+        if 'logged_in' in session:
+            return render_template("categories.html", categories=categories, logged_in=True, user=session['logged_in'])
+        return render_template("categories.html", categories=categories, logged_in=False)
+    except:
+        flash("Something went wrong :(")
+        return redirect(url_for("home"))
 
 #---------- Game ----------
 @app.route("/time")
 def recordTime():
-    # print("attempting to record")
-    new = request.args["time"]
-    user = session["logged_in"]
-    cat = request.args["category"]
-    db.update_pb(user, cat, new)
-    # print("time added")
-    flash("Time has been saved")
+    try:
+        # print("attempting to record")
+        new = request.args["time"]
+        user = session["logged_in"]
+        cat = request.args["mode"]
+        db.update_pb(user, cat, new)
+        print(new)
+        print(user)
+        print(cat)
+        # print("time added")
+        flash("Time has been saved")
+    except:
+        flash("Something went wrong :(")
     return redirect(url_for("home"))
 
 @app.route("/game")
@@ -102,31 +119,36 @@ def game():
         custom_category = request.args['category']
     except:
         pass
-    if custom_category in wordApi.get_categories():
-        not_custom = True
-    ws = [['_' for i in range(size)] for i in range(size)]
+    try:
+        ws = [['_' for i in range(size)] for i in range(size)]
 
-    # the following if statement does not allow a new mode after the first
-    # since there will be a mode ins session
-    # not using this might break something
-    if 'mode' not in session:
-        session['mode'] = request.args["mode"]
+        # the following if statement does not allow a new mode after the first
+        # since there will be a mode ins session
+        # not using this might break something
+        if 'mode' not in session:
+            session['mode'] = request.args["mode"]
 
-    # same with this if
-    if 'category' not in session:
-        session['custom_category'] = custom_category
+        # same with this if
+        if 'category' not in session:
+            session['custom_category'] = custom_category
 
-    mode = request.args["mode"]
-    game = puzzle.create_puzzle(mode, ws, size, custom_category)
-    # print(size)
-    # print(custom_category)
-    # print(mode)
-    # print(game["words"])
-    # print(str(len(game['words'])) + " words added")
-    if 'logged_in' in session:
-        t = db.load_pb(session["logged_in"], custom_category)
-        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], mode=mode, cat=custom_category, size=size)
-    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, mode=mode, cat=custom_category, size=size)
+        mode = request.args["mode"]
+        game = puzzle.create_puzzle(mode, ws, size, custom_category)
+        # print(size)
+        # print(custom_category)
+        # print(mode)
+        # print(game["words"])
+        # print(str(len(game['words'])) + " words added")
+        if 'logged_in' in session:
+            try:
+                t = db.load_pb(session["logged_in"], mode)
+            except:
+                pass
+            return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], mode=mode, cat=custom_category, size=size)
+        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, mode=mode, cat=custom_category, size=size)
+    except:
+        flash("Something went wrong :(")
+        return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.debug = True
