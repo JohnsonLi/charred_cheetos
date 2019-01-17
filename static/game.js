@@ -34,7 +34,7 @@ var choose = function(e) {
             }
             selected.push(this);
         }
-        this.style.color = 'blue';
+        this.style.color = '#ffb7c3';
         anchor = this;
     }
     startX = e.clientX;
@@ -84,7 +84,7 @@ let change_color = (e, direc) => {
     }
     if (selected.indexOf(e.target) == -1) {
         // color the element to show selection
-        e.target.style.color = 'red';
+        e.target.style.color = '#ffb7c3';
         selectedLetters.innerHTML = selectedLetters.innerHTML + e.target.innerHTML;
         selected.push(e.target);
         anchor = e.target
@@ -145,7 +145,7 @@ let check = () => {
     let word = words[index]
     if (index != -1) {
         selected.forEach(item => {
-            item.style.color = 'teal';
+            item.style.color = '#a9dbdc';
             correct.push(item);
         });
         // console.log(wordBank)
@@ -165,7 +165,7 @@ let check = () => {
             if(correct.indexOf(item) == -1){
                 item.style.color = 'black';
             } else {
-                item.style.color = 'teal';
+                item.style.color = '#a9dbdc';
             }
         });
     }
