@@ -47,6 +47,7 @@ td {
   font-weight: bold;
 }
 
+}
 #puzzle {
 }
 
@@ -99,4 +100,17 @@ td {
   margin: auto;
   margin-top: 5%;
   width: 50%;
+}
+
+#categories {
+  margin-top: 10%;
+  text-align: center;
+  color: #000000
+}
+
+#options {
+  margin-top: 5%;
+  margin-left: 25%;
+  text-align: center;
+  width: 50%
 }
