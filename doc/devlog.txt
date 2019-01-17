@@ -41,71 +41,71 @@ Worked on word.py to get data from api
 
 joyceL -- 2019-01-09 14:04
 --------------------------------------------------------------
-set up login and register routes
-created db
-added function to add new user to db
-added authenticate function to let user login
-added logout route
+Set up login and register routes
+Created db
+Added function to add new user to db
+Added authenticate function to let user login
+Added logout route
 ==============================================================
 
 joyceL -- 2019-01-09 21:48
 --------------------------------------------------------------
-fixed naming format in devlog (from lastF to firstL)
-added requirements.txt
+Fixed naming format in devlog (from lastF to firstL)
+Added requirements.txt
 ==============================================================
 
 johnsonL, kennyL -- 2019-01-10 13:50
 --------------------------------------------------------------
-started working on word search generator
-created generate function to create empty board
-created insert function to insert one word into board
+Started working on word search generator
+Created generate function to create empty board
+Created insert function to insert one word into board
 ==============================================================
 
 joyceL -- 2019-01-10 14:40
 --------------------------------------------------------------
-created db function to update leaderboard
-change in db schema
-    removed puzzle table
-    leaderboard table now have 4 columns: username, category, level, time
+Created db function to update leaderboard
+Change in db schema
+Removed puzzle table
+Leaderboard table now have 4 columns: username, category, level, time
 **need to update design doc
 ==============================================================
 
 johnsonL-- 2019-01-10 18:54
 --------------------------------------------------------------
-updated design doc
+Updated design doc
 ==============================================================
 
 joyceL-- 2019-01-11 14:01
 --------------------------------------------------------------
-created db function to generate a sorted list of times for a level
+Created db function to generate a sorted list of times for a level
 ==============================================================
 
 johnsonL, kennyL -- 2019-01-11 14:57
 --------------------------------------------------------------
-continued working on word search algorithm
-worked on placing word function
-fixed bug with placing words
+Continued working on word search algorithm
+Worked on placing word function
+Fixed bug with placing words
 ==============================================================
 
 johnsonL, kennyL -- 2019-01-13 1:20
 --------------------------------------------------------------
-created javascript of board and implemented highlighting the words
-added function to fill out rest of board with random letters
-created display for word search in game.html
+Created javascript of board and implemented highlighting the words
+Added function to fill out rest of board with random letters
+Created display for word search in game.html
 **bug with moving cursor out of board (highlighted word doesn't disappear)
 **bug with checking for correct word in a list
 ==============================================================
 
 johnsonL-- 2019-01-13 13:24
 --------------------------------------------------------------
-fixed: correct will stay highlighted.
+Fixed: correct will stay highlighted.
 ==============================================================
 
 joyceL-- 2019-01-13 13:38
 --------------------------------------------------------------
-fixed: lifting cursor out of board will cancel selection
-fixed: can check for more than one correct word
-linked wordApi.py and puzzle.py: a puzzle can be generated for "random" mode
+Fixed: lifting cursor out of board will cancel selection
+Fixed: can check for more than one correct word
+Linked wordApi.py and puzzle.py: a puzzle can be generated for "random" mode
 **bug: sometimes only a small number of words get put into puzzle
 **have not updated js file
 ==============================================================
@@ -151,26 +151,26 @@ Added strike-through for found words
 
 joyceL-- 2019-01-14 14:56
 --------------------------------------------------------------
-finished styling navbar and flashed messages
+Finished styling navbar and flashed messages
 ==============================================================
 
 joyceL-- 2019-01-15 09:13
 --------------------------------------------------------------
-fixed not displaying personal best for random/custom and for not logged in users
-js will not submit time if mode is random or custom
+Fixed not displaying personal best for random/custom and for not logged in users
+Javascript will not submit time if mode is random or custom
 **bug: timer does not stop sometimes
 **bug: timer does not show up for categories
 ==============================================================
 
 joyceL-- 2019-01-15 16:54
 --------------------------------------------------------------
-every game is timed now
-pb is displayed for every mode for logged in users
-a message shows up when game is completed
+Every game is timed now
+Personal best is displayed for every mode for logged in users
+A message shows up when game is completed
 **need to remove event listeners on all elements
 **new problems found with pb:
- need a way to submit and correctly redirects user
- score should not be submitted if category is random or custom
+    need a way to submit and correctly redirects user
+    score should not be submitted if category is random or custom
 ==============================================================
 
 kennyL-- 2019-01-16 14:04
@@ -183,4 +183,9 @@ joyceL-- 2019-01-16 14:12
 Personal Best finally working!
 Users can try the same puzzle again / submit their time
 No pb displays for random/custom regardless of whether you're logged in
+==============================================================
+
+kennyL-- 2019-01-17 13:38
+--------------------------------------------------------------
+Update design doc
 ==============================================================
