@@ -62,7 +62,9 @@
   </div>
 </div>
   <br>
+  {% if not logged_in %}
   <p style="color:grey;">Want to keep track of your scores? <a href="/login" style="color:#478c70;">Log in</a> or <a href="/register" style="color:#478c70;">register</a> to see your personal best.</p>
+  {% endif %}
 </div>
 
 
