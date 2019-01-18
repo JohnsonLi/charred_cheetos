@@ -21,8 +21,9 @@
   </div>
   <h4 class="center" id="finish_msg" style="display:none">Congratulations! You have finished the game!</h4>
   <div class="center" id="finish_game" style="display:none">
-      {% if logged_in and mode != "custom" and mode != "random" %}<button id="save_time">Submit Time</button>{% endif %}
-      <button id="try_again">Try Again</button>
+      <br>{% if logged_in and mode != "custom" and mode != "random" %}<button id="save_time" class="btn btn-secondary">Submit Time</button>{% endif %}
+      <button id="try_again" class="btn btn-outline-secondary">Try Again</button>
+      <br><br>
   </div>
   <form action="/time" id="timerForm" >
     <input type="hidden" id="time" name="time">
