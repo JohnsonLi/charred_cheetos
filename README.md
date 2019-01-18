@@ -3,6 +3,11 @@ Johnson Li (PM), Kenny Li, Joyce Liao, Cheryl Qian
 
 ## Alphabet Goop
 
+### Video Demo
+[Part 1](https://youtu.be/vN_JRHyEJKk)
+
+[Part 2](https://youtu.be/Xv5P73Mk14k)
+
 ### Project Overview
 Our app is an in-browser word search game. Users can choose from a variety of categories or create their own puzzle with customizable size and category. For default categories, logged in users can view their personal best upon their first completion of a specific category.
 
