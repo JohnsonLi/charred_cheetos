@@ -1,5 +1,5 @@
 import sqlite3
-DB_FILE="./data/wordsearch.db"
+DB_FILE="/var/www/alphabetgoop/alphabetgoop/data/wordsearch.db"
 
 # ===================== Initiate =====================
 def createTable():

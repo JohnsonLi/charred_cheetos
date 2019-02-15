@@ -1,4 +1,5 @@
-import urllib.request, json, random
+import json, random
+from urllib2 import urlopen
 
 dmUrl = "https://api.datamuse.com/words?topics={0}"
 
@@ -28,7 +29,7 @@ def random_list(size):
 
 def category(category): #returns all words in a category
     url = dmUrl.format(category)
-    req = urllib.request.urlopen(url)
+    req = urlopen(url)
     data = json.loads(req.read())
     words = []
     for d in data:

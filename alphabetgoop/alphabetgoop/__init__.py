@@ -119,36 +119,36 @@ def game():
         custom_category = request.args['category']
     except:
         pass
-    try:
-        ws = [['_' for i in range(size)] for i in range(size)]
+    # try:
+    ws = [['_' for i in range(size)] for i in range(size)]
 
-        # the following if statement does not allow a new mode after the first
-        # since there will be a mode ins session
-        # not using this might break something
-        if 'mode' not in session:
-            session['mode'] = request.args["mode"]
+    # the following if statement does not allow a new mode after the first
+    # since there will be a mode ins session
+    # not using this might break something
+    if 'mode' not in session:
+        session['mode'] = request.args["mode"]
 
-        # same with this if
-        if 'category' not in session:
-            session['custom_category'] = custom_category
+    # same with this if
+    if 'category' not in session:
+        session['custom_category'] = custom_category
 
-        mode = request.args["mode"]
-        game = puzzle.create_puzzle(mode, ws, size, custom_category)
-        # print(size)
-        # print(custom_category)
-        # print(mode)
-        # print(game["words"])
-        # print(str(len(game['words'])) + " words added")
-        if 'logged_in' in session:
-            try:
-                t = db.load_pb(session["logged_in"], mode)
-            except:
-                pass
-            return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], mode=mode, cat=custom_category, size=size)
-        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, mode=mode, cat=custom_category, size=size)
-    except:
-        flash("Something went wrong :(")
-        return redirect(url_for("home"))
+    mode = request.args["mode"]
+    game = puzzle.create_puzzle(mode, ws, size, custom_category)
+    # print(size)
+    # print(custom_category)
+    # print(mode)
+    # print(game["words"])
+    # print(str(len(game['words'])) + " words added")
+    if 'logged_in' in session:
+        try:
+            t = db.load_pb(session["logged_in"], mode)
+        except:
+            pass
+        return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=True, user=session['logged_in'], mode=mode, cat=custom_category, size=size)
+    return render_template("game.html", time=t, board = game["puzzle"], wb = game["words"], logged_in=False, mode=mode, cat=custom_category, size=size)
+    # except:
+    #     flash("Something went wrong :(")
+    #     return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.debug = True

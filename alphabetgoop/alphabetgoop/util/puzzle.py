@@ -1,6 +1,6 @@
 import random
 
-from util import wordApi
+import wordApi
 
 # word_bank = ['cat','bobcat','rhinoceros','communism','dog']
 # word_bank.sort(key=len, reverse=True)
